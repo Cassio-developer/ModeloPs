@@ -24,7 +24,13 @@
                     <div class="form-group">
                         <label class="col-md-6 control-label">Digite numero do Protocolo</label>
                         <div class="col-md-6">
-                            <input type="text" name="nome" class="form-control" required placeholder="ex:123456">
+                            <!--  select com option campo de pessoa pelo nome -->
+                           <select  name="pessoa">
+                            @foreach ($pessoas as $pessoa)
+                            <option value="{{$pessoa->id }}">{{$pessoa->nome}}</option>
+                            @endforeach
+
+                        </select>
                         </div>
                     </div>
                     <!--  CAMPO  descrição do Protocolo-->

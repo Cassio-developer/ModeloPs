@@ -17,10 +17,10 @@ class CreateProtosTable extends Migration
             $table->bigIncrements('id');
             $table->string('nome', 50);
             $table->string('campoprotocolo', 150);
-            $table->string('descrição', 50);
-            $table->dateTimeTz('DataRequisição', 0);
+            $table->string('descricao', 50);
+            $table->dateTimeTz('DataRequisicao', 0);
             $table->string('demandante', 15);
-            $table->index(['nome', 'campoprotocolo', 'descrição', 'DataRequisição', 'demandante']);
+            $table->index(['nome', 'campoprotocolo', 'descricao', 'DataRequisicao', 'demandante'],'campos');
             $table->timestamps();
         });
     }

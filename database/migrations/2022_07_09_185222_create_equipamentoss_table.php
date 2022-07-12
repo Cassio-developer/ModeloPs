@@ -21,7 +21,7 @@ class CreateEquipamentossTable extends Migration
             $table->dateTime('DataRequisicao', 0);
             $table->string('demandante', 15);  
             $table->timestamps();
-             $table->index(['nome','campoprotocolo','descricao','demandante','DataRequisicao']);
+             $table->index(['nome','campoprotocolo','descricao','demandante','DataRequisicao'],'indexequipamento');
         });
     }
 

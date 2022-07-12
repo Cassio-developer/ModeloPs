@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Protos;
+use App\Cadastropessoass;
 use Illuminate\Http\Request;
 
 class ProtosController extends Controller
@@ -24,9 +25,9 @@ class ProtosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
-        return view('cadastroprotocolo.create', ['action'=>route('Protocolos.store'), 'method'=>'post']);
+    {    //passando variavel pessoa 
+        $pessoa = Cadastropessoass::all();
+        return view('protocolos.create', ['action'=>route('Protocolos.store'), 'method'=>'post', 'pessoas'=>$pessoa]);
                     //aqui colocar pasta.index            //aqui colocar nome rota.store
     }
 

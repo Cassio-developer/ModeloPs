@@ -15,8 +15,8 @@ class CreateCadastropessoassTable extends Migration
     {
         Schema::create('cadastropessoass', function (Blueprint $table) 
             {
-              
-                    $table->increments('id');
+                //bigIncrements
+                    $table->bigIncrements('id');
                     $table->string('nome', 50);
                     $table->string('endereco', 150);
                     $table->string('cidade', 50);

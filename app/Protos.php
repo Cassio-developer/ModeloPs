@@ -16,5 +16,9 @@ class Protos extends Model
         'DataRequisicao',
         'demandante'
 
+    ];   
+    // seria para datas
+    protected $dates = [
+        'DataRequisicao',
     ];
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Cadastropessoass; //coloquei para usar Model  Cadastropessoass
 use App\Equipamentoteste; //CUIDAR COLOQUEI O MODEL EM CIMA NAMESPACE DEU ERRO!!
 use Illuminate\Http\Request;
 
@@ -14,6 +15,7 @@ class EquipamentostesteController extends Controller
     
     public function index()
     {       //aqui vai o nome tabela
+           
             $equipamentoss = Equipamentoteste::all();
             return view('protocolos.index', compact('equipamentoss') );
      }                                              //aqui vai o nome tabela
@@ -25,8 +27,8 @@ class EquipamentostesteController extends Controller
      */
     public function create()
 {
-    //
-    return view('protocolos.create', ['action'=>route('equipamento.store'), 'method'=>'post']);
+    $pessoa = Cadastropessoass::all();        
+    return view('protocolos.create', ['action'=>route('equipamento.store'), 'method'=>'post', 'pessoas'=>$pessoa]);
 }               //pasta.arquivocreate                                //rota
 
     /**
