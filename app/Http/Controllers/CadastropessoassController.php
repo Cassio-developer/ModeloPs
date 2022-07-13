@@ -12,10 +12,25 @@ class CadastropessoassController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //nome da table
-               $cadastropessoass = Cadastropessoass::all();
-               return view('cadastropessoasspasta.index', compact('cadastropessoass') );
+    {          
+          //variavel botão  
+        $search = request('search');
+        // variaveis que serão procuradas
+        $cadastropessoass = Cadastropessoass::where('nome', 'LIKE', '%' . $search . '%')
+            ->orWhere('endereco', 'LIKE', '%' . $search . '%')
+            ->orWhere('cidade', 'LIKE', '%' . $search . '%')
+            ->orWhere('telefone', 'LIKE', '%' . $search . '%')
+            ->orWhere('email', 'LIKE', '%' . $search . '%')
+            ->orWhere('cpf', 'LIKE', '%' . $search . '%')
+            ->orWhere('bairro', 'LIKE', '%' . $search . '%')
+            ->orWhere('datanascimento', 'LIKE', '%' . $search . '%')
+            ->paginate(10);
+        // cuidar a paginação default 10   
+       
+        
+
+               
+               return view('cadastropessoasspasta.index', compact('cadastropessoass','search') );
         }                   //aqui colocar pasta.index      //compact variavel nome table
                                //cuidar !!!                     
        

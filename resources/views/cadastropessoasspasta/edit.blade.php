@@ -85,7 +85,7 @@
 
                                                                 <div class="card-footer">
                                                                     <button type="submit" class="btn btn-primary"
-                                                                        name="delete_eqp">Deletar Cadastro</button>
+                                                                        name="edit_eqp">Editar Cadastro</button>
                                                                     <button type="submit" class="btn btn-primary"
                                                                         name="cancel">Cancelar</button>
                                                                 </div>

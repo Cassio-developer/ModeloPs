@@ -55,22 +55,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //testes de input de search!! continuar os testes
 
-Route::get('/equipamento', function () {
-
-    $collection = collect([
-        ['id' => 1, 'name' => 'John', 'surname' => 'Constantine', 'age' => 45],
-        ['id' => 2, 'name' => 'Jane', 'surname' => 'Tarzan', 'age' => 33],
-        ['id' => 3, 'name' => 'James', 'surname' => 'Hetfield', 'age' => 56],
-        ['id' => 4, 'name' => 'Pablo', 'surname' => 'Picasso', 'age' => 91],
-        ['id' => 5, 'name' => 'Elton', 'surname' => 'John', 'age' => 72],
-    ]);
-    //dd($collection);
-    $equipamentoss = json_decode(json_encode($collection));
-    // dd($cadastros);
-    return view('index', compact('equipamentoss'));
-})->name('equipamento');
-
-
+//Route::get('/equipamento', 'EquipamentostesteController@index')->name('index');
 //rota de teste
 Route::resource('/equipamento', 'EquipamentostesteController')->except([
     'show', 'edit'

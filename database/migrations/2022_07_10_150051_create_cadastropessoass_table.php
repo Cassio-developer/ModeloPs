@@ -25,7 +25,7 @@ class CreateCadastropessoassTable extends Migration
                     $table->string('email', 50)->nullable();
                     $table->string('cpf', 50);
                     $table->string('bairro', 15);      
-                    $table->index(['nome','endereco','cidade','bairro']);
+                    $table->index(['nome','endereco','cidade','bairro'],'indexcadastropessoass');
                     $table->timestamps();
                 });
             }
