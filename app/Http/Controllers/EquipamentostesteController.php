@@ -18,7 +18,7 @@ class EquipamentostesteController extends Controller
            
             $equipamentoss = Equipamentoteste::all();
             return view('protocolos.index', compact('equipamentoss') );
-     }                                              //aqui vai o nome tabela
+     }                 //nome pasta               //aqui vai o nome tabela
 
     /**
      * Show the form for creating a new resource.
@@ -26,7 +26,7 @@ class EquipamentostesteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-{
+{    //variavel passada pro select
     $pessoa = Cadastropessoass::all();        
     return view('protocolos.create', ['action'=>route('equipamento.store'), 'method'=>'post', 'pessoas'=>$pessoa]);
 }               //pasta.arquivocreate                                //rota

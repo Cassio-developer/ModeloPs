@@ -15,7 +15,7 @@ class CreateCadastropessoassTable extends Migration
     {
         Schema::create('cadastropessoass', function (Blueprint $table) 
             {
-                //bigIncrements
+                //bigIncrements seria para mais caracteres
                     $table->bigIncrements('id');
                     $table->string('nome', 50);
                     $table->string('endereco', 150);

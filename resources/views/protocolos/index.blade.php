@@ -50,7 +50,8 @@
                         <td>
                             <ul class="list-inline">
                                 <li>
-                                    <a href="{{ route('equipamento.edit', ['equipamento1' => $equipamento1]) }}">Editar</a>
+                                    <a
+                                        href="{{ route('equipamento.edit', ['equipamento1' => $equipamento1]) }}">Editar</a>
                                 </li>
                                 <li>
                                     <a
@@ -64,43 +65,5 @@
         </table>
     </div>
     </div>
-    <script>
-        //teste de input pra mostrar os nomes cadastrados no banco e procurar
-        $(document).ready(function() {
-            $('#exemplo').DataTable({
-                select: false,
-                responsive: true,
-                "order": [
-                    [0, "asc"]
-                ],
-                "info": false,
-                "sLengthMenu": false,
-                "bLengthChange": false,
-                "oLanguage": {
-
-                    "sEmptyTable": "Nenhum registro encontrado",
-                    "sInfo": "Mostrando de START até END de TOTAL registros",
-                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-                    "sInfoFiltered": "(Filtrados de MAX registros)",
-                    "sInfoPostFix": "",
-                    "sInfoThousands": ".",
-                    "sLengthMenu": "MENU resultados por página",
-                    "sLoadingRecords": "Carregando...",
-                    "sProcessing": "Processando...",
-                    "sZeroRecords": "Nenhum registro encontrado",
-                    "sSearch": "Pesquisar",
-                    "oPaginate": {
-                        "sNext": "Próximo",
-                        "sPrevious": "Anterior",
-                        "sFirst": "Primeiro",
-                        "sLast": "Último"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Ordenar colunas de forma ascendente",
-                        "sSortDescending": ": Ordenar colunas de forma descendente"
-                    }
-                }
-            });
-        });
-    </script>
+    <script></script>
 @endsection

@@ -17,17 +17,7 @@
 </div>
 </div>
     <script> 
-            document.getElementById("Cadastrar").disabled = true;
-            document.getElementById("input").addEventListener("input", function(event){
-                 var conteudo = document.getElementById("input").value;
-                 if (conteudo !== null && conteudo !== '') {
-                    document.getElementById("Cadastrar").disabled = false;
-                     } else {
-                         document.getElementById("Cadastrar").disabled = true;
-    }
-});
-            
-            
+           
             </script>
 
 @endsection

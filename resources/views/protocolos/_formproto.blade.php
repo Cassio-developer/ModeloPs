@@ -22,15 +22,14 @@
 
                     <!--  CAMPO numero de ptotocolo -->
                     <div class="form-group">
-                        <label class="col-md-6 control-label">Digite numero do Protocolo</label>
+                        <label class="col-md-6 control-label">Escolha Nome Demandante</label>
                         <div class="col-md-6">
-                            <!--  select com option campo de pessoa pelo nome -->
-                           <select  name="pessoa">
-                            @foreach ($pessoas as $pessoa)
-                            <option value="{{$pessoa->id }}">{{$pessoa->nome}}</option>
-                            @endforeach
-
-                        </select>
+                            <select  name="pessoa">
+                                @foreach ($pessoas as $pessoa)
+                                <option value="{{$pessoa->id }}">{{$pessoa->nome}}</option>
+                                @endforeach
+                            <!--  aqui vai o select -->
+                            </select>
                         </div>
                     </div>
                     <!--  CAMPO  descrição do Protocolo-->
@@ -68,14 +67,14 @@
                             </div>
                             <div>
                                 <!--<label class="col-md-3 control-label">
-                                  
-                                 <div class="col-md-6-d3">
-                                <strong>Selecione o Demandante</strong>
-                                <select name="demandante" class="form-control" >
-                                <option value="">Clique aqui</option>
-                                            
-                                </select>
-                            </div>-->
+                                      
+                                     <div class="col-md-6-d3">
+                                    <strong>Selecione o Demandante</strong>
+                                    <select name="demandante" class="form-control" >
+                                    <option value="">Clique aqui</option>
+                                                
+                                    </select>
+                                </div>-->
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Salvar</button>
                                     <a class="btn btn-secondary" href="#">Cancelar</a>

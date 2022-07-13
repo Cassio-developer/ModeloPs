@@ -17,7 +17,7 @@ class CadastropessoassController extends Controller
                $cadastropessoass = Cadastropessoass::all();
                return view('cadastropessoasspasta.index', compact('cadastropessoass') );
         }                   //aqui colocar pasta.index      //compact variavel nome table
-        //cuidar pois quebrei a cabeça!!!                     
+                               //cuidar !!!                     
        
 
     /**

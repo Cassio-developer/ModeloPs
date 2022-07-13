@@ -17,9 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/cadastroPessoa', function () {
-    return view('cadastroPessoa');
-})->name('cadastroPessoa');;
 
 Route::get('/cadastro', function () {
     return view('cadastro');
@@ -55,47 +52,6 @@ Route::get('/pdf', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::resource('/CadastroPESSOAS', 'EquipamentosController');
-Route::resource('/CadastroPESSOAS', 'EquipamentosController')->except([
-    'show', 'edit'
-]);
-Route::get('/CadastroPESSOAS/delete/{variavel}', function (App\Equipamento $variavel) {
-    return view('equipamentos.destroy', ['eqp' => $variavel]);
-})->name('CadastroPESSOAS.delete');
-Route::get('/CadastroPESSOAS/edit/{variavel}', function (App\Equipamento $variavel) {
-    return view('equipamentos.edit', ['eqp' => $variavel]);
-})->name('CadastroPESSOAS.edit');
-Route::resource('/cadastropessoas', 'PessoasTableController');
-Route::resource('/cadastropessoas', 'PessoasTableController')->except([
-    'show', 'edit'
-]);
-Route::get('/cadastroProtocolo', function () {
-    return view('cadastroProtocolo');
-})->name('cadastroProtocolo');;
-
-Route::get('/cadastroProtocolo2', function () {
-    return view('cadastroProtocolo2');
-})->name('cadastroProtocolo2');;
-
-Route::get('/cadastroPessoa', function () {
-    return view('cadastroPessoa');
-})->name('cadastroPessoa');;
-
-
-Route::get('/Protocolos', function () {
-    return view('Protocolos');
-})->name('Protocolos');;
-
-Route::resource('/Protocolos', 'ProtosController')->except([
-    'show', 'edit'
-]);                                            //declaração model
-Route::get('/Protocolos/delete/{protos}', function (App\Protos $protos) {
-    return view('cadastroprotocolo.destroy', ['eqp1' => $protos]);
-})->name('Protocolos.delete');
-Route::get('/Protocolos/edit/{proto}', function (App\Protos $proto) {
-    return view('cadastroprotocolo.edit', ['proto' => $proto]);
-})->name('Protocolos.edit');
 
 //testes de input de search!! continuar os testes
 
@@ -142,12 +98,3 @@ Route::get('/cadastropessoass/edit/{cadastropessoass}', function (App\Cadastrope
 })->name('cadastropessoass.edit');        //acionado pelo botao eqp
           //nome da rota.arquivo
 
-// Route::get ( '/equipamento/teste', function () {
-    //$cadastropessoass = Data::all ();return view ( 'index2' );
- //})->withData (  );   
-
-//use App\BootGridData;
-//Route::get('/equipamento', function () {
-  //$data = BootGridData::all();
-  //return view('welcome')->withData($data);
-//});
