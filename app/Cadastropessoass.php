@@ -9,6 +9,7 @@ class Cadastropessoass extends Model
 {
     protected $table = "cadastropessoass";
     protected $fillable = [
+        //sempre colocar as variaveis do banco aqui!
         'nome',
         'endereco',
         'cidade',
@@ -16,6 +17,17 @@ class Cadastropessoass extends Model
         'email',
         'cpf',
         'bairro',
-        'datanascimento'
+        'pessoa',
+        'datanascimento',
+        'sexo',
+        'created_at', 
+        'updated_at'
     ];
+    // seria para datas
+    protected $dates = [
+        'DataRequisicao',
+    ];  //teste
+    public function cadastropessoass(){
+        return $this->hasMany('App\Equipamentoteste');
+}
 }

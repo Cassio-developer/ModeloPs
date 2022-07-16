@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label">Digite numero do Protocolo</label>
                             <div class="col-md-6">
-                                <input type="text" name="nome" class="form-control" value="{{ $eqp1->nome }}">
+                                <input type="number" name="numero" class="form-control" value="{{ $eqp1->numero }}">
                             </div>
                         </div>
                         <!--  CAMPO  descrição do Protocolo-->
@@ -47,16 +47,19 @@
                             <div class="form-group">
                                 <label class="col-md-6 control-label">Digite Nome Demandante!</label>
                                 <div class="col-md-6">
-                                    <input type="text" name="demandante" class="form-control"
-                                        value="{{ $eqp1->demandante }}">
+                                    <input type="text" name="pessoa" class="form-control"
+                                        value="{{ $eqp1->pessoa }}">
                                 </div>
 
                                 <div>
 
                                     <div class="form-group">
-                                        <input type="submit" name="save_eqp" value="Atualizar Cadastro">
-                                        <input type="submit" name="cancel" value="Cancelar">
+                                        <button type="submit" class="btn btn-primary"
+                                            name="edit_eqp">Editar Protocolo</button>
+                                        <button type="submit" class="btn btn-primary"
+                                            name="cancel">Cancelar</button>
                                     </div>
+                                </div>
                                 </div>
                             </div>
 

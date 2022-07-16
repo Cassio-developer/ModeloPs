@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title', 'EXEMPLO')
 @section('content')
-    <div class="conteudo">
+   
         <!--nome rota -->
         <form action={{ route('equipamento.store') }} method="post">
             <!--a rota antes era Protocolos -->
@@ -24,18 +24,36 @@
                     <div class="form-group">
                         <label class="col-md-6 control-label">Escolha Nome Demandante</label>
                         <div class="col-md-6">
-                            <select  name="pessoa">
-                                @foreach ($pessoas as $pessoa)
-                                <option value="{{$pessoa->id }}">{{$pessoa->nome}}</option>
-                                @endforeach
+                            <!--  name="pessoa" colocar depois, coloquei par fazer teste pois deu erro sql -->
+                            
                             <!--  aqui vai o select -->
                             </select>
+                            <div class="form-group col-md-3">
+                                <label for="pessoa" class="control-label">pessoa</label>
+                                <select name="pessoa" class="form-control" style="width:250px" required
+                                    id="pessoa">
+                                    <option value="1"
+                                        @foreach ($pessoas as $pessoa) <option value="{{ $pessoa->nome }}" 
+                                                @if (old('nome_id') == $pessoa->nome) {{ 'selected' }} @endif>
+                                        {{ $pessoa->nome }}</option>
+                                    @endforeach
+                                </select>
                         </div>
                     </div>
                     <!--  CAMPO  descrição do Protocolo-->
                     <div class="form-group">
-                        <label class="col-md-6 control-label">Digite descrição do Protocolo</label>
+                        <label for="numero" class="col-sm-50 control-label">Numero Protocolo:</label>
                         <div class="col-md-6">
+                            <input type="number" name="numero" value="<?php
+                        
+                            echo (isset($nome) && ($nome != null || $nome != "")) ? $nome : '';
+
+                            ?>" class="form-control" />
+
+                    <!--  CAMPO  descrição do Protocolo-->
+                    <div class="form-group">
+                        <label class="col-md-6 control-label">Digite descrição do Protocolo</label>
+                        <div class="col-md-12">
                             <input type="text" name="campoprotocolo" class="form-control" required
                                 placeholder="Ex: Protocolo será sobre, demanda das obras Seman.">
                         </div>
@@ -59,13 +77,7 @@
                             </div>
                         </div>
                         <!--  CAMPO prazo requisição -->
-                        <div class="form-group">
-                            <label class="col-md-6 control-label">Digite Nome Demandante!</label>
-                            <div class="col-md-6">
-                                <input type="text" name="demandante" class="form-control" placeholder="Ex: João"
-                                    required="ON">
-                            </div>
-                            <div>
+                        
                                 <!--<label class="col-md-3 control-label">
                                       
                                      <div class="col-md-6-d3">

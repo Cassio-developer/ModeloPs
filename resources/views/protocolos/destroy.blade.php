@@ -17,7 +17,7 @@
             <div class="form-group">
                 <label class="col-md-6 control-label">Numero do Protocolo</label>
                 <div class="col-md-6">
-                    <input type="text" id="nome" name="nome" value="{{ $eqp1->nome }}" disabled>
+                    <input type="number" id="nome" name="numero" value="{{ $eqp1->numero }}" disabled>
                 </div>
             </div>
             <!--  CAMPO  descrição do Protocolo-->
@@ -31,7 +31,7 @@
                 {{-- - Formulario DataRequisição - --}}
 
                 <div class="form-group col-md-3">
-                    <label for="descricao" class="control-label">Demandante</label>
+                    <label for="descricao" class="control-label">Descrição</label>
                     <div class="input-group">
                         <input type="text" id="descricao" name="descricao" value="{{ $eqp1->descricao }}" disabled>
                     </div>
@@ -49,7 +49,7 @@
                 <div class="form-group">
                     <label class="col-md-6 control-label">Demandante</label>
                     <div class="col-md-8">
-                        <input type="text" id="demandante" name="demandante" value="{{ $eqp1->demandante }}" disabled>
+                        <input type="text" id="pessoa" name="pessoa" value="{{ $eqp1->pessoa }}" disabled>
                     </div>
                     <div>
 

@@ -10,8 +10,11 @@
         <div class="form-group">
             <label for="nome" class="control-label">Nome: *</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="nome" name="nome"
-                    placeholder="Nome completo"required>
+                <input type="text" class="form-control" id="nome" name="nome"required
+                    placeholder="Nome completo" value="<?php
+                    echo (isset($nome) && ($nome != null || $nome != "")) ? $nome : '';
+                    ?>" class="form-control" />
+                    
             </div>
         </div>
 
@@ -20,7 +23,7 @@
         <div class="form-group">
             <label for="endereco" class="control-label">Endereço: *</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="endereco" name="endereco"required
+                <input type="text" class="form-control" id="endereco" name="endereco"
                     placeholder="Ex: Av. Dom João Becker, 754, Centro">
             </div>
         </div>
@@ -54,10 +57,10 @@
 
             {{-- - Formulario nascimento - --}}
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label for="datanascimento" class="control-label">Data de Nascimento:</label>
                 <div class="input-group">
-                    <input type="date" class="form-control" name="datanascimento" id="datanascimento"
+                    <input type="date" class="form-control" name="datanascimento" id="datanascimento"required
                         placeholder="ex: 02/05/1988" />
                 </div>
             </div>
@@ -73,9 +76,10 @@
 
             <!--  CAMPO CPF -->
             <div class="form-group">
-                <label class="col-md-8 control-label">CPF</label>
+                <label class="col-md-10 control-label">CPF</label>
                 <div class="col-md-10">
-                    <input type="text" name="cpf" class="form-control" required placeholder="ex:000000000000">
+                    <input type="text" name="cpf" class="form-control" required placeholder="ex:015.125.120.50"required
+                    >
                 </div>
             </div>
 
@@ -89,21 +93,24 @@
                 </div>
             </div>
 
-            <!--  CAMPO complemento -->
-            <div class="form-group col-lg-3">
-                <label for="option">Selecione Sexo</label required>
-                <div class="input-group">
-                    <select class="form-control">
-                        <option value="">Selecione Aqui</option>
-                        <option value="m">Masculino</option>
-                        <option value="f">Femenino</option>
-                    </select>
+            <!--  CAMPO sexo -->
+           
+            <div class="form-group col-md-6">
+                <label for="sexo" class="control-label">Data de Nascimento:</label>
+                        <select name="sexo" class="form-control" required>
+                         <option value="">Selecione Aqui</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Feminino</option>
+                        <select>   
+                        </div>
+                    
                     <!--  CAMPO Numero -->
 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="numero" class="control-label">Digite aqui Numero:</label>
                         <div class="input-group">
                             <input type="number" class="form-control" name="numero" id="numero"
                                 placeholder="ex: 90" />
-                        </div>
+                                 <!--  CAMPO apenas de teste tirar-->
+                   
                     </div>

@@ -15,8 +15,10 @@ class CadastropessoassController extends Controller
     {          
           //variavel botão  
         $search = request('search');
-        // variaveis que serão procuradas
+// variaveis que serão procuradas
         $cadastropessoass = Cadastropessoass::where('nome', 'LIKE', '%' . $search . '%')
+                            //nome Controller
+               //aqui vamos realizar a busca do campo de pesquisa index             
             ->orWhere('endereco', 'LIKE', '%' . $search . '%')
             ->orWhere('cidade', 'LIKE', '%' . $search . '%')
             ->orWhere('telefone', 'LIKE', '%' . $search . '%')
@@ -26,11 +28,13 @@ class CadastropessoassController extends Controller
             ->orWhere('datanascimento', 'LIKE', '%' . $search . '%')
             ->paginate(10);
         // cuidar a paginação default 10   
-       
+        //paginação!
+        $cadastropessoass = Cadastropessoass::paginate(12);
+  
         
 
                
-               return view('cadastropessoasspasta.index', compact('cadastropessoass','search') );
+               return view('cadastropessoasspasta.index', compact('cadastropessoass','search',"cadastropessoass") );
         }                   //aqui colocar pasta.index      //compact variavel nome table
                                //cuidar !!!                     
        
@@ -42,7 +46,7 @@ class CadastropessoassController extends Controller
      */
    
     public function create()
-{
+{          
     //
     return view('cadastropessoasspasta.create', ['action'=>route('cadastropessoass.store'), 'method'=>'post']);
 }
@@ -108,6 +112,7 @@ class CadastropessoassController extends Controller
             $cadastropessoass->email = $request->input('email');
             $cadastropessoass->cpf = $request->input('cpf');
             $cadastropessoass->bairro = $request->input('bairro');
+            $cadastropessoass->sexo = $request->input('sexo');
             $cadastropessoass->datanascimento = $request->input('datanascimento');
             $cadastropessoass->update();
             \Session::flash('message', 'Cadastro atualizado com sucesso !');

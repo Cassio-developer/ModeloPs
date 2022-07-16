@@ -7,13 +7,19 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Equipamentoteste extends Model
-{
+{    
     protected $table = "equipamentoss";
+   
     protected $fillable = [
-        'nome',
+        'numero',
         'campoprotocolo',
         'descricao',
         'DataRequisicao',
-        'demandante'
+        'pessoa'
+        
+    ];
+    // seria para datas
+    protected $dates = [
+        'DataRequisicao',
     ];
 }

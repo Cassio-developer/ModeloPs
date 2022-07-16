@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Cadastropessoass; //coloquei para usar Model  Cadastropessoass
 use App\Equipamentoteste; //CUIDAR COLOQUEI O MODEL EM CIMA NAMESPACE DEU ERRO!!
 use Illuminate\Http\Request;
-
 class EquipamentostesteController extends Controller
 {
     /**
@@ -19,11 +18,12 @@ class EquipamentostesteController extends Controller
     { //variavel botão  
         $search = request('search');
         // variaveis que serão procuradas
-        $equipamentoss = Equipamentoteste::where('nome', 'LIKE', '%' . $search . '%')
+        $equipamentoss = Equipamentoteste::where('numero', 'LIKE', '%' . $search . '%')
+                          //nome Controller
             ->orWhere('campoprotocolo', 'LIKE', '%' . $search . '%')
             ->orWhere('descricao', 'LIKE', '%' . $search . '%')
             ->orWhere('DataRequisicao', 'LIKE', '%' . $search . '%')
-            ->orWhere('demandante', 'LIKE', '%' . $search . '%')
+            ->orWhere('pessoa', 'LIKE', '%' . $search . '%')
             ->paginate(10);
         //paginação
 
@@ -36,9 +36,14 @@ class EquipamentostesteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {    //variavel passada pro select
+        //analisar esta parte depois, pois não está pasando variavel pessoa!!
         $pessoa = Cadastropessoass::all();
+       // $pessoa = new Cadastropessoass ();
+        $pessoa->nome = $request->input('pessoa');
+       // $pessoa->save();
+        //analisar esta parte depois, pois não está pasando variavel pessoa!!
         return view('protocolos.create', ['action' => route('equipamento.store'), 'method' => 'post', 'pessoas' => $pessoa]);
     }               //pasta.arquivocreate                                //rota
 
@@ -50,7 +55,7 @@ class EquipamentostesteController extends Controller
      */
     public function store(Request $request)
     {
-        $equipamentoss =
+        
             //
             $url = $request->get('redirect_to', route('equipamento.index'));
         if (!$request->has('cancel')) {
@@ -95,11 +100,10 @@ class EquipamentostesteController extends Controller
     public function update(Equipamentoteste $equipamento, Request $request)
     {
         if (!$request->has('cancel')) {
-            $equipamentoss->nome = $request->input('nome');
+            $equipamentoss->numero = $request->input('numero');
             $equipamentoss->campoprotocolo = $request->input('campoprotocolo');
             $equipamentoss->descricao = $request->input('descricao');
             $equipamentoss->DataRequisicao = $request->input('DataRequisicao');
-            $equipamentoss->demandante = $request->input('demandante');
             $equipamentoss->update();
             \Session::flash('message', 'Cadastro Protocoloc atualizado com sucesso !');
         } else {

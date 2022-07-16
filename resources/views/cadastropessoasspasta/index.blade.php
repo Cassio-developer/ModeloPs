@@ -16,33 +16,32 @@
                     </form>
                 </div>
         </nav>
-        <div class="card-footer col-12 modal-title text-center">
-            <a href="{{ route('cadastropessoass.create') }}" class="btn btn-primary">Cadastro Pessoas</a>
+    </div>
+    <div class="conteudo-modal-title text-center">
+        <h3>Para registrar este protocolo devera primeiro ser cadastrado Faça seu cadastro de usuario logo abaixo</h3>
+        <h1>Listagem de Cadastro</h1>
 
-            <!--aqui vai nome rota -->
-            <a href="{{ route('equipamento.create') }}" class="btn btn-primary">Cadastro Protocolo</a>
-        </div>
+        <!--if else para search -->
+        @if ($search)
+            <h2>Buscando por:{{ $search }}</h2>
+        @else
+            <h2>Proximos Cadastros:{{ $search }}</h2>
+        @endif
+        @if (count($cadastropessoass) == 0 && $search)
+            <p>Não foi possivel achar cadastros para este nome: {{ $search }}! <a
+                    href="{{ route('cadastropessoass.index') }}">Voltar</a></p>
+        @elseif(count($cadastropessoass) == 0)
+            <p>Não há cadastros para este dado informado!</p>
+        @endif
+        <div>
+            @foreach ($cadastropessoass as $cadastropessoas)
+            @endforeach
+            <div class="card-footer col-12 modal-title text-center">
 
-        <div class="conteudo-modal-title text-center">
-            <h3>Para registrar este protocolo devera primeiro ser cadastrado Faça seu cadastro de usuario logo abaixo</h3>
-            <h1>Listagem de Cadastro</h1>
+                <a href="{{ route('cadastropessoass.create') }}" class="btn btn-primary">Cadastro Pessoas</a>
 
-            <!--if else para search -->
-            @if ($search)
-                <h2>Buscando por:{{ $search }}</h2>
-            @else
-                <h2>Proximos Cadastros:{{ $search }}</h2>
-            @endif
-            @if (count($cadastropessoass) == 0 && $search)
-                <p>Não foi possivel achar cadastros para este nome: {{ $search }}! <a
-                        href="{{ route('cadastropessoass.index') }}">Voltar</a></p>
-            @elseif(count($cadastropessoass) == 0)
-                <p>Não há cadastros para este dado informado!</p>
-            @endif
-            <div>
-
-                @foreach ($cadastropessoass as $cadastropessoas)
-                @endforeach
+                <!--aqui vai nome rota -->
+                <a href="{{ route('equipamento.create') }}" class="btn btn-primary">Cadastro Protocolo</a>
             </div>
         </div>
         <div class="row">
@@ -50,7 +49,6 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Id</th>
                             <th>Nome</th>
                             <th>Endereço</th>
                             <th>Cidade</th>
@@ -59,6 +57,7 @@
                             <th>Cpf</th>
                             <th>Bairro</th>
                             <th>Data</th>
+                            <th>Sexo</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,9 +70,8 @@
                             <td>{{ $cadastropessoas->cpf }}</td>
                             <td>{{ $cadastropessoas->bairro }}</td>
                             <td>{{ $cadastropessoas->datanascimento }}</td>
-
+                            <td>{{ $cadastropessoas->sexo }}</td>
                             <td>
-
                                 <ul class="list-inline">
                                     <li>
                                         <a
@@ -90,11 +88,10 @@
                             </td>
                             </tr>
                         @endforeach
-
                     </tbody>
                 </table>
-
             </table>
             <div>
             </div>
-        @endsection
+        </div>
+    @endsection
