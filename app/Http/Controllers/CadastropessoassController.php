@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Cadastropessoass;  //CUIDAR COLOQUEI O MODEL EM CIMA NAMESPACE DEU ERRO!!
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateUserFormRequest;
 
 class CadastropessoassController extends Controller
 {
@@ -25,11 +26,13 @@ class CadastropessoassController extends Controller
             ->orWhere('email', 'LIKE', '%' . $search . '%')
             ->orWhere('cpf', 'LIKE', '%' . $search . '%')
             ->orWhere('bairro', 'LIKE', '%' . $search . '%')
+            ->orWhere('sexo', 'LIKE', '%' . $search . '%')
             ->orWhere('datanascimento', 'LIKE', '%' . $search . '%')
-            ->paginate(10);
+            ->orWhere('complemento', 'LIKE', '%' . $search . '%')
+            ->paginate(50);
         // cuidar a paginação default 10   
         //paginação!
-        $cadastropessoass = Cadastropessoass::paginate(12);
+        //$cadastropessoass = Cadastropessoass::paginate(12);
   
         
 
@@ -57,7 +60,7 @@ class CadastropessoassController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateUserFormRequest $request)
 {
     //                                           //pasta
     $url = $request->get('redirect_to', route('cadastropessoass.index'));
@@ -113,6 +116,7 @@ class CadastropessoassController extends Controller
             $cadastropessoass->cpf = $request->input('cpf');
             $cadastropessoass->bairro = $request->input('bairro');
             $cadastropessoass->sexo = $request->input('sexo');
+            $cadastropessoass->complemento = $request->input('complemento');
             $cadastropessoass->datanascimento = $request->input('datanascimento');
             $cadastropessoass->update();
             \Session::flash('message', 'Cadastro atualizado com sucesso !');

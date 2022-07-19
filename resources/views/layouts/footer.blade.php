@@ -1,4 +1,4 @@
-<footer class="footer fixed">
+<footer class="footer navbar-fixed-bottom">
 	<div class="container-fluid">
 		<div class="copyright ml-auto">
 			<h5 style="color: white;">{{ date('Y') }} &copy; 2022</h5>

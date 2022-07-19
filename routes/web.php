@@ -12,17 +12,21 @@
 */
 
 use Illuminate\Database\Eloquent\Collection;
-                                      //function é função de callback
+                                      //function é função de callback com retorno
 Route::group(['middleware' => 'web'], function(){
-
-    Route::get('/', function () {
-        return view('home');//rota antes welcome
-    });
+    Route::get('/', 'HomeController@index')->middleware('auth');
+    Auth::routes();
+    //com esta route abaixo funcionou direto pagina de login!!
+    //Route::post('/login',['users'=>'loginController@checkLogin','as' => 'VerificarLogin']);
+    Route::get('/welcome', 'HomeController@index')->name('welcome')->middleware('auth');
+    //Route::get('/', function () {
+        //return view('home');//rota antes welcome
+   // });
     
     
     Route::get('/cadastro', function () {
         return view('cadastro');
-    })->name('cadastro');
+    })->name('cadastro')->middleware('auth');
     
     Route::get('/lista', function () {
         $collection = collect([
@@ -36,7 +40,7 @@ Route::group(['middleware' => 'web'], function(){
         $cadastros = json_decode(json_encode($collection));
         // dd($cadastros);
         return view('tabela', compact('cadastros'));
-    })->name('lista');
+    })->name('lista')->middleware('auth');
     
     Route::get('/pdf', function () {
         $collection = collect([
@@ -49,11 +53,11 @@ Route::group(['middleware' => 'web'], function(){
         $cadastros = json_decode(json_encode($collection));
         $pdf = \PDF::loadView('pdf', compact('cadastros'));
         return $pdf->stream('exemplo.pdf');
-    })->name('pdf');
+    })->name('pdf')->middleware('auth');
     
-    Auth::routes();
+   // Auth::routes();
     
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
     
     //testes de input de search!! continuar os testes
     
@@ -61,35 +65,33 @@ Route::group(['middleware' => 'web'], function(){
     //rota de teste
     Route::resource('/equipamento', 'EquipamentostesteController')->except([
         'show', 'edit'
-    ]);
+    ])->middleware('auth');
     Route::get('/equipamento/delete/{equipamento}', function (App\Equipamentoteste $equipamento) {
         return view('protocolos.destroy', ['eqp1' => $equipamento]);
-    })->name('equipamento.delete');
+    })->name('equipamento.delete')->middleware('auth');
     Route::get('/equipamento/edit/{equipamento}', function (App\Equipamentoteste $equipamento) {
         return view('protocolos.edit', ['eqp1' => $equipamento]);
-    })->name('equipamento.edit');
+    })->name('equipamento.edit')->middleware('auth');
     
     
     //nova rota para cadastro de pessoas
     Route::resource('/cadastropessoass', 'CadastropessoassController')->except([
         'show', 'edit'
-    ]);                        //este parametro verficar no php artisa route:list {cadastropessoass}
+    ])->middleware('auth');                      //este parametro verficar no php artisa route:list {cadastropessoass}
     Route::get('/cadastropessoass/delete/{cadastropessoass}', function (App\Cadastropessoass $cadastropessoass) {
         return view('cadastropessoasspasta.destroy', ['eqp' => $cadastropessoass]);
         //nome da pasta
-    })->name('cadastropessoass.delete');                                            //passei aqui mesmo nome
+    })->name('cadastropessoass.delete')->middleware('auth');                                           //passei aqui mesmo nome
     //nome da rota.arquivo
     Route::get('/cadastropessoass/edit/{cadastropessoass}', function (App\Cadastropessoass $cadastropessoass) {
         return view('cadastropessoasspasta.edit', ['eqp' => $cadastropessoass]);
         //nome da pasta
-    })->name('cadastropessoass.edit');        //acionado pelo botao eqp
+    })->name('cadastropessoass.edit')->middleware('auth');        //acionado pelo botao eqp
               //nome da rota.arquivo
-    
-    
-
-
-
-
 });
 
 
+Route::get('/usuarios', 'UsuariosController@index')->middleware('auth');
+Route::get('/usuarios/new', 'UsuariosController@new')->middleware('auth');
+Route::post('/usuarios/add', 'UsuariosController@add')->middleware('auth');
+Route::get('/usuarios/{id}/edit', 'UsuariosController@edit')->middleware('auth');;

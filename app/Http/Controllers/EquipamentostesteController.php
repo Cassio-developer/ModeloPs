@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Cadastropessoass; //coloquei para usar Model  Cadastropessoass
 use App\Equipamentoteste; //CUIDAR COLOQUEI O MODEL EM CIMA NAMESPACE DEU ERRO!!
+use App\Http\Requests\StoreUpdateEquipamentoFormRequest;
 use Illuminate\Http\Request;
+
 class EquipamentostesteController extends Controller
 {
     /**
@@ -26,7 +28,7 @@ class EquipamentostesteController extends Controller
             ->orWhere('pessoa', 'LIKE', '%' . $search . '%')
             ->paginate(10);
         //paginação
-
+        $equipamentoss = Equipamentoteste::paginate(10);
         //aqui vai o nome tabela                                 //passar função search
         return view('protocolos.index', compact('equipamentoss', 'search'));
     }                 //nome pasta               //aqui vai o nome tabela
@@ -40,6 +42,7 @@ class EquipamentostesteController extends Controller
     {    //variavel passada pro select
         //analisar esta parte depois, pois não está pasando variavel pessoa!!
         $pessoa = Cadastropessoass::all();
+        for($i = 0; $i < count($pessoa); $i++)
        // $pessoa = new Cadastropessoass ();
         $pessoa->nome = $request->input('pessoa');
        // $pessoa->save();
@@ -53,7 +56,7 @@ class EquipamentostesteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateEquipamentoFormRequest  $request)
     {
         
             //
@@ -98,9 +101,11 @@ class EquipamentostesteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Equipamentoteste $equipamento, Request $request)
-    {
+    {         
+        
         if (!$request->has('cancel')) {
-            $equipamentoss->numero = $request->input('numero');
+         
+            $equipamentoss->numero = $request->input('numero')->default('');
             $equipamentoss->campoprotocolo = $request->input('campoprotocolo');
             $equipamentoss->descricao = $request->input('descricao');
             $equipamentoss->DataRequisicao = $request->input('DataRequisicao');
@@ -111,7 +116,7 @@ class EquipamentostesteController extends Controller
         }
         return redirect()->route('equipamento.index');
     }
-
+             
     /**
      * Remove the specified resource from storage.
      *

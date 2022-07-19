@@ -6,7 +6,7 @@
 
                 {{-- MOSTRA NOME USUARIO LOGADO  --}}
 
-                {{-- <li class="nav-item">
+                 <li class="nav-item">
                     <hr style="margin-top: 0px; margin-bottom: 0px; margin: 0px">
                     <a style="margin-top: 0px !important;">
                         <i class="fas fa-user"></i>
@@ -18,7 +18,7 @@
                 </p>
                 </a>
                 <hr style="margin-top: 0px; margin-bottom: 5px;">
-                </li> --}}
+                </li> 
 
                 <li class="nav-item {{ (request()->Is('/')) ? 'active' : '' }}" class="sr-only">
                     <a href="/">

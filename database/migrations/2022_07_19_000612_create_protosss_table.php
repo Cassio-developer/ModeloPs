@@ -19,7 +19,7 @@ class CreateProtosssTable extends Migration
             $table->string('campoprotocolo', 150);
             $table->string('descricao', 50);
             $table->dateTime('DataRequisicao', 0);
-            $table->string('demandante', 15);  
+            $table->string('demandante', 30);  
            
             $table->unsignedBigInteger('cadastropessoass_id');
             //foreign referenciando  tabela cadastropessoass_id

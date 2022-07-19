@@ -10,7 +10,7 @@
                     <form action="{{ route('equipamento.index') }}" method="GET">
                         {{ csrf_field() }}
                         <input type="search" class="form-control input-sm" name="search" value="{{ $search }}">
-                        <button type="submit" class="btn btn-outline-success my-2 my-sm-0-dark bg-primary"
+                        <button type="submit" class="btn btn-primary my-2 my-sm-0-dark"
                             type="search">Pesquisar</button>
                     </form>
                 </div>
@@ -35,6 +35,7 @@
         @foreach ($equipamentoss as $equipamento1)
           
                 @endforeach
+                
     </div>
     <div class="card-footer col-12 modal-title text-center">
         <!--aqui vai nome rota -->
@@ -44,11 +45,11 @@
     </div>
     
     <div class="row">
-        <table class="table table-striped">
+        <table class="table table-hover table table-bordered">
             <thead>
                 <tr>
                     <!--verificar amanha -->
-                    <th>Demandante Id</th>
+                    <th>Demandante</th>
                     <th>Id</th>
                     <th>Numero Protocolo</th>
                     <th>Campo Protocolo</th>
@@ -80,6 +81,7 @@
                         </td>
                     </tr>
                     <div>
+                        
     </div>
     @endforeach
     </tbody>

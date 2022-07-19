@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {      //cassio
+    {      //cassio aumenta os caracteres
         Schema::defaultStringLength(191);
     }
 }

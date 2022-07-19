@@ -15,11 +15,11 @@ class CreateEquipamentossTable extends Migration
     {
         Schema::create('equipamentoss', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('numero');
+            $table->bigInteger('numero')->default(0);
             $table->string('campoprotocolo', 150);
-            $table->string('descricao', 50);
+            $table->string('descricao', 100);
             $table->dateTime('DataRequisicao', 0);
-            $table->string('pessoa', 15); //adiconado pessoa com relação a forkey
+            $table->string('pessoa', 60); //adiconado pessoa com relação a forkey
             $table->index(['pessoa','numero','campoprotocolo','descricao','DataRequisicao'],'indexequipamentoss');
             $table->timestamps();
         });

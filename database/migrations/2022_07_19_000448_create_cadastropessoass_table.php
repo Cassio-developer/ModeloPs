@@ -21,15 +21,14 @@ class CreateCadastropessoassTable extends Migration
                 $table->string('endereco', 150);
                 $table->string('cidade', 50);
                 $table->dateTime('datanascimento', 0);
+                $table->string('bairro', 30); 
                 $table->string('telefone', 20)->nullable();
                 $table->string('email', 50)->nullable();
                 $table->string('cpf', 50);
-                $table->string('bairro', 30); 
-                $table->string('sexo', 15);     
-                $table->index(['nome','endereco','cidade','bairro','sexo'],'indexcadastropessoass');
+                $table->string('sexo', 30);    
+                $table->string('complemento', 30);    
+                $table->index(['nome','endereco','cidade','datanascimento','bairro','telefone','sexo','email','cpf'],'indexcadastropessoass');
                 $table->timestamps();
-
-
         });
     }
 

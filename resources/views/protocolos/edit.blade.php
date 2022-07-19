@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label">Digite numero do Protocolo</label>
                             <div class="col-md-6">
-                                <input type="number" name="numero" class="form-control" value="{{ $eqp1->numero }}">
+                                <input type="number" name="numero" class="form-control" value="{{ $eqp1->numero }}" >
                             </div>
                         </div>
                         <!--  CAMPO  descrição do Protocolo-->
@@ -30,7 +30,7 @@
                             <div class="form-group col-md-4">
                                 <label for="DataRequisicao" class="control-label">Data desta Requisição</label>
                                 <div class="input-group">
-                                    <input type="date" id="DataRequisicao" class="form-control" name="DataRequisicao"
+                                    <input type="text" id="DataRequisicao" class="form-control" name="DataRequisicao"
                                         value="{{ $eqp1->DataRequisicao }}">
                                 </div>
                             </div>

@@ -1,87 +1,108 @@
 @extends('layouts.master')
 @section('title', 'EXEMPLO')
 @section('content')
-    <div class="card">
-        <div class="card-header">
-
-            <h3>Editar Cadastro Pessoas</h3>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+            <h3>Editar Protocolos</h3>
             <form action={{ route('cadastropessoass.update', ['eqp' => $eqp->id]) }} method="post">
                 @csrf
                 @method('PUT')
                 <input type="hidden" id="redirect_to" name="redirect_to" value={{ URL::previous() }}>
-
-                <input type="hidden" id="id" class="form-control">
-
-                <!--  CAMPO Id-->
-                <div class="form-group">
-                    <label class="col-md-6 control-label">Id do cadastro</label>
-                    <div class="col-md-6">
-                        <input type="text" id="id" name="id" value="{{ $eqp->id }}" disabled>
-
-                    </div>
-                    <!--  CAMPO  Nome-->
+                     
+                      <!--  CAMPO  editado com bootstrap arrumar depois-->
+                  
                     <div class="form-group">
-                        <label class="col-md-6 control-label">Nome</label>
-                        <div class="col-md-6">
-                            <input type="text" id="nome" name="nome" value="{{ $eqp->nome }}">
+                        <label for="id" class="control-label">Id do cadastro</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="id" name="endereco"disabled
+                                value="{{ isset($eqp->id) ? $eqp->id : old('endereco') }}">
                         </div>
-
-                        {{-- - Formulario Endereco - --}}
-
-                        <div class="form-group col-md-3">
-                            <label for="descricao" class="control-label">Endereco</label>
+                                                                <!--  old é para persistir o erro no campo!-->
+                        <!--  CAMPO Id-->
+                        <div class="form-group">
+                            <label for="nome" class="control-label">Nome</label>
                             <div class="input-group">
-                                <input type="text" id="endereco" name="endereco" value="{{ $eqp->endereco }}">
+                                <input type="text" class="form-control" id="nome" name="nome"
+                                    value="{{ isset($eqp->nome) ? $eqp->nome : old('nome') }}">
                             </div>
-                        </div>
 
-                        <!--  CAMPO Datanascimento -->
-                        <div>
+                            <!--  CAMPO  Nome-->
                             <div class="form-group">
-                                <label class="col-md-6 control-label">Datanascimento</label>
-                                <div class="col-md-8">
-                                    <input type="date" id="datanascimento" name="datanascimento"
-                                        value="{{ $eqp->cpf }}">
+                                <label for="endereco" class="control-label">Endereco</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="endereco" name="endereco"
+                                        value="{{ isset($eqp->endereco) ? $eqp->endereco : old('endereco') }}">
+                                </div>
+                            </div>
+                            {{-- - Formulario Endereco - --}}
+
+                            <div class="form-group">
+                                <label for="cidade" class="control-label">Cidade</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="cidade" name="cidade"
+                                        value="{{ isset($eqp->cidade) ? $eqp->cidade : old('cidade') }}">
                                 </div>
                             </div>
                             <!--  CAMPO Cidade -->
                             <div class="form-group">
-                                <label class="col-md-6 control-label">Cidade</label>
-                                <div class="col-md-6">
-                                    <input type="cidade" id="cidade" name="cidade" value="{{ $eqp->cidade }}">
+                                <label for="telefone" class="control-label">Telefone</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="telefone" name="telefone"
+                                        value="{{ isset($eqp->telefone) ? $eqp->telefone : old('telefone') }}">
                                 </div>
                             </div>
                             <!--  CAMPO Telefone-->
                             <div class="form-group">
-                                <label class="col-md-6 control-label">Telefone</label>
-                                <div class="col-md-8">
-                                    <input type="text" id="telefone" name="telefone" value="{{ $eqp->telefone }}">
+                                <label for="email" class="control-label">E-mail</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="email" name="email"
+                                        value="{{ isset($eqp->email) ? $eqp->email : old('email') }}">
                                 </div>
-                                <!--  CAMPO E-mail -->
-                                <div>
-                                    <div class="form-group">
-                                        <label class="col-md-6 control-label">E-mail</label>
-                                        <div class="col-md-8">
-                                            <input type="text" id="email" name="email" value="{{ $eqp->email }}">
-                                        </div>
-                                        <!--  CAMPO Cpf -->
-                                        <div>
-                                            <div class="form-group">
-                                                <label class="col-md-6 control-label">Cpf</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" id="cpf" name="cpf"
-                                                        value="{{ $eqp->cpf }}">
-                                                </div>
-                                                <div>
-                                                    <!--  CAMPO Bairro -->
-                                                    <div>
-                                                        <div class="form-group">
-                                                            <label class="col-md-6 control-label">Bairro</label>
-                                                            <div class="col-md-8">
-                                                                <input type="text" id="bairro" name="bairro"
-                                                                    value="{{ $eqp->bairro }}">
-                                                            </div>
-                                                            <div>
+                            </div>
+                            <!--  CAMPO E-mail -->
+                            <div class="form-group">
+                                <label for="cpf" class="control-label">Cpf</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="cpf" name="cpf"
+                                        value="{{ isset($eqp->cpf) ? $eqp->cpf : old('cpf') }}">
+                                </div>
+                            </div>
+                            <!--  CAMPO Cpf -->
+                            <div class="form-group">
+                                <label for="bairro" class="control-label">Bairro</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="bairro" name="bairro"
+                                        value="{{ isset($eqp->bairro) ? $eqp->bairro : old('bairro') }}">
+                                </div>
+                            </div>
+                            <!--  CAMPO Bairro -->
+                            <div class="form-group">
+                                <label for="datanascimento" class="control-label">Data Nascimento</label>
+                                <div class="input-group">
+                                    <input type="date" class="form-control" id="bairro" name="datanascimento"
+                                        value="{{ isset($eqp->datanascimento) ? $eqp->datanascimento : old('datanascimento') }}">
+                                </div>
+                            </div>
+                            <!--  CAMPO sexo -->
+
+            
+                            <div class="form-group">
+                                <label for="sexo" class="control-label">sexo</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="sexo" name="sexo"
+                                        value="{{ isset($eqp->sexo) ? $eqp->sexo : old('sexo') }}">
+                                </div>
+                            </div>
+                     <!--  CAMPO Complemento -->
+                            <div class="form-group">
+                                <label for="complemento" class="control-label">Complemento</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="complemento" name="complemento"
+                                        value="{{ isset($eqp->complemento) ? $eqp->complemento : old('complemento') }}">
+                                </div>
+                            </div>
 
                                                                 <div class="card-footer">
                                                                     <button type="submit" class="btn btn-primary"
