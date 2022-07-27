@@ -15,17 +15,13 @@ class CreateProtosssTable extends Migration
     {
         Schema::create('protosss', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome', 50);
-            $table->string('campoprotocolo', 150);
-            $table->string('descricao', 50);
-            $table->dateTime('DataRequisicao', 0);
-            $table->string('demandante', 30);  
-           
+            $table->string('descricao', 70);
+            $table->date('DataRequisicao', 0);
+            $table->string('prazo', 30);   
             $table->unsignedBigInteger('cadastropessoass_id');
-            //foreign referenciando  tabela cadastropessoass_id
             $table->foreign('cadastropessoass_id')->references('id')->on('cadastropessoass')->onDelete('cascade');
             $table->timestamps();
-            $table->index(['nome','campoprotocolo','descricao','DataRequisicao','demandante'],'index');
+            $table->index(['descricao','DataRequisicao','prazo','cadastropessoass_id'],'index');
         });
     }
 

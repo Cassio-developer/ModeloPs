@@ -6,7 +6,7 @@
     <div class="row d-flex justify-content-around">
         <div class="col-sm-3">
             <div class="card text-center">
-                <img class="card-img-top" src="{{ URL::to('/imagens/images.png') }}" alt="">
+                <img class="card-img-top" src="{{ URL::to('/imagens/prefeitura.jfif') }}" alt="">
                 <div class="card-body">
                     <h4 class="card-title">Cadastro Exemplo</h4>
                     <p class="card-text"></p>
@@ -15,8 +15,8 @@
             </div>
         </div>
         <div class="col-sm-3">
-            <div class="card text-center">
-                <img class="card-img-top" src="{{ URL::to('/imagens/images.png') }}" alt="">
+            <div class="card text-center">                                        <!-- ajustar no css global depois -->
+                <img class="card-img-top" src="{{ URL::to('/imagens/prefeitura2.jpg') }}"width="350" height="250" alt="">
                 <div class="card-body">
                     <h4 class="card-title">Lista Exemplo</h4>
                     <p class="card-text"></p>
@@ -26,7 +26,7 @@
         </div>
         <div class="col-sm-3">
             <div class="card text-center">
-                <img class="card-img-top" src="{{ URL::to('/imagens/images.png') }}" alt="">
+                <img class="card-img-top" src="{{ URL::to('/imagens/prefeitura3.jfif') }}"width="350" height="250" alt="">
                 <div class="card-body">
                     <h4 class="card-title">PDF Exemplo</h4>
                     <p class="card-text"></p>

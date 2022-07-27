@@ -60,30 +60,50 @@ Route::group(['middleware' => 'web'], function(){
     Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
     
     //testes de input de search!! continuar os testes
+    //Route::get('/equipamento/delete/{equipamento}', function (App\Equipamentoteste $equipamento) {
+     //   return view('protocolos.destroy', ['eqp1' => $equipamento]);
+   // })->name('equipamento.delete')->middleware('auth');
+    //Route::get('/equipamento/edit/{equipamento}', function (App\Equipamentoteste $equipamento) {
+       // return view('protocolos.edit', ['eqp1' => $equipamento]);
+    //})->name('equipamento.edit')->middleware('auth');
     
     //Route::get('/equipamento', 'EquipamentostesteController@index')->name('index');
     //rota de teste
-    Route::resource('/equipamento', 'EquipamentostesteController')->except([
-        'show', 'edit'
-    ])->middleware('auth');
-    Route::get('/equipamento/delete/{equipamento}', function (App\Equipamentoteste $equipamento) {
-        return view('protocolos.destroy', ['eqp1' => $equipamento]);
-    })->name('equipamento.delete')->middleware('auth');
-    Route::get('/equipamento/edit/{equipamento}', function (App\Equipamentoteste $equipamento) {
-        return view('protocolos.edit', ['eqp1' => $equipamento]);
-    })->name('equipamento.edit')->middleware('auth');
+    //Route::resource('/equipamento', 'EquipamentostesteController')->except([
+       // 'show', 'edit'
+
+    Route::post('/saveprot', 'EquipamentostesteController@store')->name('saveprot')->middleware('auth');
     
+    Route::get('/registrar', 'EquipamentostesteController@cadastro')->name('registrar')->middleware('auth');
+
+    Route::get('/tabelaprotocolo', 'EquipamentostesteController@index')->name('tabelaprotocolo')->middleware('auth');
     
+
+    Route::get('/cadastroprotocolo/edit/{id}', 'EquipamentostesteController@edit')->name('editprot')->middleware('auth');
+
+    Route::post('/cadastroprotocolo/{id}', 'EquipamentostesteController@update')->name('alterar_protocolo')->middleware('auth');
+
+    Route::get('/deleteprot/{id}',  'EquipamentostesteController@delete')->name('deleteprot')->middleware('auth');
+
+
     //nova rota para cadastro de pessoas
     Route::resource('/cadastropessoass', 'CadastropessoassController')->except([
         'show', 'edit'
     ])->middleware('auth');                      //este parametro verficar no php artisa route:list {cadastropessoass}
     Route::get('/cadastropessoass/delete/{cadastropessoass}', function (App\Cadastropessoass $cadastropessoass) {
+        if(!session()->has('redirect_to'))
+        {
+            session(['redirect_to' => url()->previous()]);
+        }
         return view('cadastropessoasspasta.destroy', ['eqp' => $cadastropessoass]);
         //nome da pasta
     })->name('cadastropessoass.delete')->middleware('auth');                                           //passei aqui mesmo nome
     //nome da rota.arquivo
     Route::get('/cadastropessoass/edit/{cadastropessoass}', function (App\Cadastropessoass $cadastropessoass) {
+        if(!session()->has('redirect_to'))
+        {
+            session(['redirect_to' => url()->previous()]);
+        }
         return view('cadastropessoasspasta.edit', ['eqp' => $cadastropessoass]);
         //nome da pasta
     })->name('cadastropessoass.edit')->middleware('auth');        //acionado pelo botao eqp
@@ -91,7 +111,9 @@ Route::group(['middleware' => 'web'], function(){
 });
 
 
-Route::get('/usuarios', 'UsuariosController@index')->middleware('auth');
-Route::get('/usuarios/new', 'UsuariosController@new')->middleware('auth');
-Route::post('/usuarios/add', 'UsuariosController@add')->middleware('auth');
-Route::get('/usuarios/{id}/edit', 'UsuariosController@edit')->middleware('auth');;
+Route::get('/usuarios', 'UsuariosController@index')->name('usuarios')->middleware('auth');
+Route::get('/usuarios/new', 'UsuariosController@new')->name('new')->middleware('auth');
+Route::post('/usuarios/add', 'UsuariosController@add')->name('add')->middleware('auth');
+Route::get('/usuarios/{id}/edit', 'UsuariosController@edit')->name('edit')->middleware('auth');
+Route::delete('/usuarios/delete/{id}', 'UsuariosController@delete')->middleware('auth');
+Route::post('/usuarios/update/{id}', 'UsuariosController@update')->name('update')->middleware('auth');

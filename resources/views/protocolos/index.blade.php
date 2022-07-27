@@ -7,7 +7,7 @@
             <div>
                 <!--input para pesquisar na pagina -->
                 <div class="col-sm-12">
-                    <form action="{{ route('equipamento.index') }}" method="GET">
+                    <form action="{{ route('tabelaprotocolo') }}" method="GET">
                         {{ csrf_field() }}
                         <input type="search" class="form-control input-sm" name="search" value="{{ $search }}">
                         <button type="submit" class="btn btn-primary my-2 my-sm-0-dark"
@@ -25,14 +25,14 @@
             @else
                 <h2>Proximos Cadastros:{{ $search }}</h2>
             @endif
-            @if (count($equipamentoss) == 0 && $search)
-                    <p>Não foi possivel achar cadastros para este nome: {{ $search }}! <a
-                            href="{{ route('equipamento.index') }}">Voltar</a></p>
-                @elseif(count($equipamentoss) == 0)
+            @if (count($protos) == 0 && $search)
+                    <span>Não foi possivel achar cadastros para este nome: {{ $search }}! <a
+                            href="{{ route('tabelaprotocolo') }}">Voltar</a></span>
+                @elseif(count($protos) == 0)
                     <p>Não há cadastros para este dado informado!</p>
                 @endif
         </div>
-        @foreach ($equipamentoss as $equipamento1)
+        @foreach ($protos as $equipamento1)
           
                 @endforeach
                 
@@ -49,33 +49,33 @@
             <thead>
                 <tr>
                     <!--verificar amanha -->
-                    <th>Demandante</th>
+                    
                     <th>Id</th>
-                    <th>Numero Protocolo</th>
-                    <th>Campo Protocolo</th>
+                    <th>Nome Pessoa</th>
+                    <th>Prazo</th>
                     <th>Descrição</th>
                     <th>Data Requisição</th>
                     
                 </tr>
             </thead>
             <tbody>
-                @foreach ($equipamentoss as $equipamento1)
+                @foreach ($protos as $equipamento1)
                     <tr>       <!--verificar amanha -->
-                        <td>{{ $equipamento1->pessoa}}</td>
+                       
                         <td>{{ $equipamento1->id }}</td>
-                        <td>{{ $equipamento1->numero }}</td>
-                        <td>{{ $equipamento1->campoprotocolo }}</td>
+                        <td>{{ $equipamento1->cadastropessoass->nome }}</td>
+                        <td>{{ $equipamento1->prazo }}</td>
                         <td>{{ $equipamento1->descricao }}</td>
                         <td>{{ $equipamento1->DataRequisicao }}</td>
                         <td>
                             <ul class="list-inline">
                                 <li>
                                     <a
-                                        href="{{ route('equipamento.edit', ['equipamento1' => $equipamento1]) }}">Editar</a>
+                                        href="{{ route('editprot', ['equipamento1' => $equipamento1]) }}">Editar</a>
                                 </li>
                                 <li>
                                     <a
-                                        href="{{ route('equipamento.delete', ['equipamento1' => $equipamento1]) }}">Deletar</a>
+                                        href="{{ route('deleteprot', ['equipamento1' => $equipamento1]) }}">Deletar</a>
                                 </li>
                             </ul>
                         </td>

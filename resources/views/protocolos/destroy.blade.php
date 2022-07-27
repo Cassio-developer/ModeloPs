@@ -1,80 +1,72 @@
 @extends('layouts.master')
 @section('title', 'EXEMPLO')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
 
-        <h1>Deletar Cadastro protocolo</h1>
-        <form action={{ route('equipamento.destroy', ['equipamento1' => $eqp1->id]) }} method="post">
-            @csrf
-            <!--declarar igual no delete eqp1 -->
-            @method('DELETE')
-            <input type="hidden" id="redirect_to" name="redirect_to" value={{ URL::previous() }}>
-           
-          
-            <!--  CAMPO numero de ptotocolo -->
-            <div class="form-group">
-                <label for="numero" class="control-label">Numero do Protocolo</label>
-                <div class="input-group">
-                    <input type="number" class="form-control" id="numero" name="nome"
-                        value="{{ isset($eqp1->numero) ? $eqp1->numero : old('numero') }}"disabled>
-                </div>
-
-                 <!--  CAMPO  descrição do Protocolo-->
-                <div class="form-group">
-                    <label for="campoprotocolo" class="control-label">Descrição do Protocolo</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="campoprotocolo" name="campoprotocolo"
-                            value="{{ isset($eqp1->campoprotocolo) ? $eqp1->campoprotocolo : old('campoprotocolo') }}"disabled>
-                    </div>
-                  
-                    <!--  CAMPO prazo requisição DEIXAR 500  CARACTERES-->
-                    <div class="form-group">
-                        <label for="descricao" class="control-label">Descrição</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="descricao" name="descricao"
-                                value="{{ isset($eqp1->descricao) ? $eqp1->descricao : old('descricao') }}"disabled>
+                    <h1>Deletar Cadastro protocolo</h1>
+                    <form action={{ route('deleteprot', ['id' => $protocolo]) }} method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" id="redirect_to" name="redirect_to" value={{ URL::previous() }}>
+                        <div>
+                            <div class="form-group col-md-3">
+                                <label for="cadastropessoass_id" class="control-label">Pessoa</label>
+                                <select name="cadastropessoass_id" class="form-control" style="width:250px" 
+                                    id="cadastropessoass_id">
+                                    @foreach ($pessoa as $pessoa)
+                                        <option value="{{ $pessoa->id }}"
+                                            @if (old('nome_id') == $pessoa->nome) {{ 'selected' }} @endif>
+                                            {{ $pessoa->nome }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                    </div>
+                        <!--  CAMPO  descrição do Protocolo-->
+                        <div class="form-group">
+                            <label class="col-md-6 control-label">Digite descrição do Protocolo</label>
+                            <div class="col-md-12">
+                                <input type="text" name="descricao" class="form-control"
+                                    placeholder="Ex: Protocolo será sobre, demanda das obras Seman."
+                                    value="{{ isset($protocolo) ? $protocolo->descricao : old('descricao') }}">
 
-                      {{-- - Formulario DataRequisição - --}}
-                    <div class="form-group">
-                        <label for="DataRequisicao" class="control-label">Data Requisição</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="DataRequisicao" name="DataRequisicao"
-                                value="{{ isset($eqp1->DataRequisicao) ? $eqp1->DataRequisicao : old('DataRequisicao') }}"disabled>
+                            </div>
+
+                            {{-- - Formulario DataRequisição - --}}
+
+                            <div class="form-group col-md-4">
+                                <label for="DataRequisicao" class="control-label">Data desta Requisição</label>
+                                <div class="input-group">
+                                    <input type="date" class="form-control" name="DataRequisicao" id="DataRequisicao"
+                                        placeholder="ex: 02/05/1989"
+                                        value="{{ isset($protocolo) ? $protocolo->DataRequisicao : old('DataRequisicao') }}">
+
+                                </div>
+
+                                <!--  CAMPO prazo Prazo do Protocolo-->
+                                <div class="form-group">
+                                    <label for="prazo">Digite Prazo do Protocolo</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="prazo" class="form-control"
+                                            placeholder="Ex: 20/01/2022"
+                                            value="{{ isset($protocolo) ? $protocolo->prazo : old('prazo') }}">
+
+                                    </div>
+
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary" name="delete_eqp">Deletar
+                                        Cadastro</button>
+                                    <button type="submit" class="btn btn-primary" name="cancel">Cancelar</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <!--  CAMPO pessoa demandante -->
-                    <div class="form-group">
-                        <label for="pessoa" class="control-label">Demandante</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="pessoa" name="pessoa"
-                                value="{{ isset($eqp1->pessoa) ? $eqp1->pessoa : old('pessoa') }}"disabled>
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-center-alert alert" role="alert">
-                        <h4 class="alert-heading">Exclusão!!</h4>
-                        <p>Esta operação não poderá ser desfeita! Confirma a
-                            exclusão do Cadastro?</p>
-
-
-                    </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary" name="delete_eqp">Deletar
-                            Cadastro</button>
-                        <button type="submit" class="btn btn-primary" name="cancel">Cancelar</button>
-                    </div>
                 </div>
             </div>
+        </div>
     </div>
-</div>
-</div>
-</div>
-</form>
+    </form>
 
 @endsection
-

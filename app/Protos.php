@@ -10,15 +10,18 @@ class Protos extends Model
 {
     protected $table = "protosss";
     protected $fillable = [
-        'nome',
-        'campoprotocolo',
+        'prazo',
         'descricao',
         'DataRequisicao',
-        'demandante'
+        'cadastropessoass_id'
 
     ];   
     // seria para datas
     protected $dates = [
         'DataRequisicao',
     ];
+             //função relaciona pessoa com cadastro
+    public function cadastropessoass() {        //nome model!
+        return $this->belongsTo(\App\Cadastropessoass::class);
+    }
 }

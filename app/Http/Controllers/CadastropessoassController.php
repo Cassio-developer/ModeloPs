@@ -14,6 +14,12 @@ class CadastropessoassController extends Controller
      */
     public function index()
     {          
+        $sexo=[
+            '1' => 'masculino',
+            '2' => 'feminino',
+        ];
+
+
           //variavel botão  
         $search = request('search');
 // variaveis que serão procuradas
@@ -33,11 +39,10 @@ class CadastropessoassController extends Controller
         // cuidar a paginação default 10   
         //paginação!
         //$cadastropessoass = Cadastropessoass::paginate(12);
-  
-        
+                
 
                
-               return view('cadastropessoasspasta.index', compact('cadastropessoass','search',"cadastropessoass") );
+               return view('cadastropessoasspasta.index',(['cadastropessoass','search'=>$search,"cadastropessoass"=>$cadastropessoass,'sexo' =>$sexo]));
         }                   //aqui colocar pasta.index      //compact variavel nome table
                                //cuidar !!!                     
        
@@ -47,11 +52,14 @@ class CadastropessoassController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-   
     public function create()
-{          
-    //
-    return view('cadastropessoasspasta.create', ['action'=>route('cadastropessoass.store'), 'method'=>'post']);
+    {        
+        
+        if(!session()->has('redirect_to'))
+        {
+           session(['redirect_to' => url()->previous()]);
+        }
+    return view('cadastropessoasspasta.create', [('cadastropessoass.store'), 'method'=>'post']);
 }
 
     /**
@@ -60,7 +68,7 @@ class CadastropessoassController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUpdateUserFormRequest $request)
+    public function store(StoreUpdateUserFormRequest $request )
 {
     //                                           //pasta
     $url = $request->get('redirect_to', route('cadastropessoass.index'));
@@ -73,7 +81,7 @@ class CadastropessoassController extends Controller
     { 
         $request->session()->flash('message', 'Operação cancelada pelo usuário'); 
     }
-    return redirect()->to($url);
+    return redirect()->to(session()->pull('redirect_to'));
 }
 
     /**
@@ -105,7 +113,7 @@ class CadastropessoassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */            //aqui vai nome model Cadastropessoass
-    public function update(Cadastropessoass $cadastropessoass, Request $request)
+    public function update(Cadastropessoass $cadastropessoass, StoreUpdateUserFormRequest $request)
     {
         if (! $request->has('cancel') ){
             $cadastropessoass->nome = $request->input('nome');
@@ -125,7 +133,7 @@ class CadastropessoassController extends Controller
         { 
             $request->session()->flash('message', 'Operação cancelada pelo usuário'); 
         }
-        return redirect()->route('cadastropessoass.index'); 
+        return redirect()->to(session()->pull('redirect_to'));
     }
 
     /**
@@ -147,6 +155,6 @@ class CadastropessoassController extends Controller
         { 
             $request->session()->flash('message', 'Operação cancelada pelo usuário'); 
         }
-        return redirect()->route('cadastropessoass.index'); 
+        return redirect()->to(session()->pull('redirect_to')); 
     }                            //pasta
 }

@@ -21,6 +21,7 @@ class Cadastropessoass extends Model
         'pessoa',
         'datanascimento',
         'sexo',
+        'numero',
         'complemento',
         'created_at', 
         'updated_at'
@@ -29,4 +30,7 @@ class Cadastropessoass extends Model
     protected $dates = [
         'DataRequisicao',
     ]; 
+    public function protocolo() {
+        return $this->hasMany(\App\Protos::class);
+    }
 }

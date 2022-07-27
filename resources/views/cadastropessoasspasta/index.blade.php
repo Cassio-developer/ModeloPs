@@ -26,8 +26,8 @@
             <h2>Proximos Cadastros:{{ $search }}</h2>
         @endif
         @if (count($cadastropessoass) == 0 && $search)
-            <p>Não foi possivel achar cadastros para este nome: {{ $search }}! <a
-                    href="{{ route('cadastropessoass.index') }}">Voltar</a></p>
+            <span>Não foi possivel achar cadastros para este nome: {{ $search }}! <a
+                    href="{{ route('cadastropessoass.index') }}">Voltar</a></span>
         @elseif(count($cadastropessoass) == 0)
             <p>Não há cadastros para este dado informado!</p>
         @endif
@@ -40,7 +40,7 @@
             <a href="{{ route('cadastropessoass.create') }}" class="btn btn-primary">Cadastro Pessoas</a>
 
             <!--aqui vai nome rota -->
-            <a href="{{ route('equipamento.create') }}" class="btn btn-primary">Cadastro Protocolo</a>
+            <a href="{{ route('registrar') }}" class="btn btn-primary">Cadastro Protocolo</a>
         </div>
     </div>
     <div class="row">
@@ -56,6 +56,7 @@
                     <th scope="col">Data</th>
                     <th scope="col">Sexo</th>
                     <th scope="col">Compl:</th>
+                    
                     <!--  <th scope="col">E-mail</th>
                                     <th scope="col">Complemento</th> -->
                 </tr>

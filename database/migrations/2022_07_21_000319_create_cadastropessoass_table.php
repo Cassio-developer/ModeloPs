@@ -12,18 +12,18 @@ class CreateCadastropessoassTable extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('cadastropessoass', function (Blueprint $table) 
+    {Schema::create('cadastropessoass', function (Blueprint $table) 
         {
             //bigIncrements seria para mais caracteres
                 $table->bigIncrements('id');
                 $table->string('nome', 50);
                 $table->string('endereco', 150);
                 $table->string('cidade', 50);
-                $table->dateTime('datanascimento', 0);
+                $table->date('datanascimento', 0);
                 $table->string('bairro', 30); 
                 $table->string('telefone', 20)->nullable();
                 $table->string('email', 50)->nullable();
+                $table->integer('numero')->length(10)->unsigned();
                 $table->string('cpf', 50);
                 $table->string('sexo', 30);    
                 $table->string('complemento', 30);    

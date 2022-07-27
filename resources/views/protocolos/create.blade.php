@@ -7,11 +7,15 @@
                 <h3 class="col-12 modal-title text-center">Novo Cadastro</h3>
 
                 @include('protocolos._formproto')
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" name="save_eqp">Cadastrar</button>
-                    <button type="submit" class="btn btn-primary" name="cancel">Cancelar</button>
-                </div>
             </div>
-            </form>
         </div>
-    @endsection
+        <div class="col-12 modal-title text-center">
+
+            <input type="submit" class="btn btn-primary" name="save_eqp">
+
+            <input type="submit" class="btn btn-primary" name="cancel" value="Cancelar">
+        </div>
+
+    </div>
+    </div>
+@endsection
