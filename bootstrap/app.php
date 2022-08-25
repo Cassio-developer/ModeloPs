@@ -41,6 +41,8 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+//cassio
+$app->register(OwenIt\Auditing\AuditingServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Return The Application

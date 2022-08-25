@@ -15,6 +15,12 @@
                     </form>
                 </div>
         </nav>
+        <div class="card-body">
+            @if (session('message'))
+                <div class="msg" role="alert"> {{ session('message') }}
+                </div>
+            @endif
+        </div>
         <div class="conteudo-modal-title text-center">
             <h3>Para que seja registrado o protocolo, portanto, primeiro a pessoa demandante terá de ser cadastrada no
                 cadastro de pessoas!.</h3>
@@ -23,11 +29,11 @@
             @if ($search)
                 <h2>Buscando por:{{ $search }}</h2>
             @else
-                <h2>Proximos Cadastros:{{ $search }}</h2>
+                <strong><h2>Busca de Protocolo:{{ $search }}</h2></strong>
             @endif
-            @if (count($protos) == 0 && $search)
-                    <span>Não foi possivel achar cadastros para este nome: {{ $search }}! <a
-                            href="{{ route('tabelaprotocolo') }}">Voltar</a></span>
+            @if (count($protos) == 0 && $search) 
+                    <strong class="alert alert" >Não foi possivel achar cadastros para este nome: {{ $search }}! <a
+                            href="{{ route('tabelaprotocolo') }}">Voltar</a></strong>
                 @elseif(count($protos) == 0)
                     <p>Não há cadastros para este dado informado!</p>
                 @endif
@@ -35,14 +41,14 @@
         @foreach ($protos as $equipamento1)
           
                 @endforeach
-                
+            </div>
     </div>
     <div class="card-footer col-12 modal-title text-center">
         <!--aqui vai nome rota -->
         <a href="{{ route('cadastropessoass.create') }}" class="btn btn-primary">Incluir Cadastro Pessoa</a>
         <!--rota para cadastro pessoas -->
     </div>
-    </div>
+    
     
     <div class="row">
         <table class="table table-hover table table-bordered">

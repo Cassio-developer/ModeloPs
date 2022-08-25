@@ -51,6 +51,7 @@ html {
     -webkit-tap-highlight-color: transparent
 }
 
+
 @-ms-viewport {
     width: device-width
 }
@@ -5891,6 +5892,17 @@ button.close {
 .modal-open .modal {
     overflow-x: hidden;
     overflow-y: auto
+}
+
+.msg{
+    background-color: #0069d9;
+    color: #b9bbbe;
+    text-align: center;
+    border: 1px solid #c3E6CB;
+    width: 100%;
+    margin-bottom: 0;
+    padding: 10px;
+    transition: 500ms linear;
 }
 
 .modal {

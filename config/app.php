@@ -2,6 +2,9 @@
 
 return [
 
+
+    
+    
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -105,7 +108,7 @@ return [
     | localized telephone numbers, street address information and more.
     |
     */
-
+      
     'faker_locale' => 'en_US',
 
     /*
@@ -175,7 +178,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        //cassio
+        OwenIt\Auditing\AuditingServiceProvider::class,
     ],
 
     /*

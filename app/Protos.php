@@ -5,11 +5,14 @@ use App\Protos;
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
-class Protos extends Model
+use OwenIt\Auditing\Contracts\Auditable;
+//cassio audiotable                     //cassio audiotable 
+class Protos extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
     protected $table = "protosss";
     protected $fillable = [
+        'pessoa',
         'prazo',
         'descricao',
         'DataRequisicao',

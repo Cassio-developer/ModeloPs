@@ -29,7 +29,7 @@ class StoreUpdateEquipamentoFormRequest extends FormRequest
              'prazo' => 'required|string|max:50|min:3',
             'descricao' => 'required|string|max:255|min:3',
             'DataRequisicao' => 'required|string|max:50|min:0',
-            'pessoa_id' => 'required|string|max:50|min:0'
+            'cadastropessoass_id' => 'required|string|max:50|min:0'
             //cuidar pois nao estava passando os nomes corretamente e nao enviava nao fazia nada 
         ];
     }
@@ -38,8 +38,8 @@ class StoreUpdateEquipamentoFormRequest extends FormRequest
                'prazo.required' => 'O campo prazo deve ser preenchido',
                 'descricao.required' => 'O campo descrição deve ser preenchido',
                 'DataRequisicao.required' => 'O campo data deve ser preenchido',
-                'pessoa_id.required' => 'O campo pessoa deve ser selecionado',
-                
+                'cadastropessoass_id.required' => 'O campo pessoa deve ser selecionado',
+                //não estava funcionado com pessoas_id
             ];
         }
         

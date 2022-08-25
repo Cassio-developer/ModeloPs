@@ -15,8 +15,14 @@
                 </div>
         </nav>
     </div>
+    <div class="card-body">
+        @if (session('message'))
+            <div class="msg" role="alert"> {{ session('message') }}
+            </div>
+        @endif
+    </div>
     <div class="conteudo-modal-title text-center">
-        <h3>Para registrar este protocolo devera primeiro ser cadastrado Faça seu cadastro de usuario logo abaixo</h3>
+        <h3>Para registrar o protocolo devera primeiro ser cadastrado!  Faça seu cadastro de usuario logo abaixo</h3>
         <h1>Listagem de Cadastro</h1>
 
         <!--if else para search -->
@@ -26,12 +32,13 @@
             <h2>Proximos Cadastros:{{ $search }}</h2>
         @endif
         @if (count($cadastropessoass) == 0 && $search)
-            <span>Não foi possivel achar cadastros para este nome: {{ $search }}! <a
-                    href="{{ route('cadastropessoass.index') }}">Voltar</a></span>
+        <strong class="alert alert" >Não foi possivel achar cadastros para este nome: {{ $search }}! <a
+                    href="{{ route('cadastropessoass.index') }}">Voltar</a></strong>
         @elseif(count($cadastropessoass) == 0)
             <p>Não há cadastros para este dado informado!</p>
         @endif
     </div>
+</div>
     <div>
         @foreach ($cadastropessoass as $cadastropessoas)
         @endforeach
@@ -41,7 +48,7 @@
 
             <!--aqui vai nome rota -->
             <a href="{{ route('registrar') }}" class="btn btn-primary">Cadastro Protocolo</a>
-        </div>
+        
     </div>
     <div class="row">
         <table id="grid-basic" class="w3-table-all w3-card-4  table-hover table table-bordered">

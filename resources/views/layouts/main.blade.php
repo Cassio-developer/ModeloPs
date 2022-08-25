@@ -4,7 +4,7 @@
             <div class="page-category">
 
                 @yield('content')
-
+               
             </div>
         </div>
     </div>

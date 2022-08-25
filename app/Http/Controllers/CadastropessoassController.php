@@ -22,8 +22,10 @@ class CadastropessoassController extends Controller
 
           //variavel botão  
         $search = request('search');
-// variaveis que serão procuradas
+      //  if($search){
+// variaveis que serão procuradas               //coluna  //metodo //oquebuscar
         $cadastropessoass = Cadastropessoass::where('nome', 'LIKE', '%' . $search . '%')
+       
                             //nome Controller
                //aqui vamos realizar a busca do campo de pesquisa index             
             ->orWhere('endereco', 'LIKE', '%' . $search . '%')
@@ -39,8 +41,12 @@ class CadastropessoassController extends Controller
         // cuidar a paginação default 10   
         //paginação!
         //$cadastropessoass = Cadastropessoass::paginate(12);
-                
+   // }else {
+    //    $cadastropessoass = Cadastropessoass::all();
+    //}        
 
+
+        
                
                return view('cadastropessoasspasta.index',(['cadastropessoass','search'=>$search,"cadastropessoass"=>$cadastropessoass,'sexo' =>$sexo]));
         }                   //aqui colocar pasta.index      //compact variavel nome table
@@ -70,20 +76,30 @@ class CadastropessoassController extends Controller
      */
     public function store(StoreUpdateUserFormRequest $request )
 {
-    //                                           //pasta
+    //  
+    
+    $this->validate($request, [
+        
+            'cpf' => 'required|cpf',
+      
+    ]);
+    
+    
     $url = $request->get('redirect_to', route('cadastropessoass.index'));
     if (! $request->has('cancel') ){
         $dados = $request->all();
         Cadastropessoass::create($dados);
-        $request->session()->flash('message', ' Cadastrado com sucesso');
-    }
-    else
+        $request->session()->flash('message', ' Cadastrado com Sucesso');
+        \Session::flash('message',"Cadastrado com sucessodo");
+    
+    }else
     { 
         $request->session()->flash('message', 'Operação cancelada pelo usuário'); 
     }
-    return redirect()->to(session()->pull('redirect_to'));
-}
 
+
+       return redirect('/cadastropessoass')->with('success', 'Protocolo cadastrado com sucesso!');
+    }
     /**
      * Display the specified resource.
      *
@@ -149,7 +165,7 @@ class CadastropessoassController extends Controller
         if (! $request->has('cancel') ){
             $cadastropessoass->delete();
             //passar aqui partametro delete da route exibido php artisan route:list $cadastropessoass
-            \Session::flash('message', 'Equipamento excluído com sucesso !');
+            \Session::flash('message', 'Cadastro  excluído com sucesso !');
         }
         else
         { 

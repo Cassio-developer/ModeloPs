@@ -17,7 +17,7 @@
 
                         <div class="card-footer col-12 modal-title text-center">
                             <h3>Lista de Usuarios</h3>
-                            <a href="{{ url('usuarios/new') }}">Novo Usuario</a>
+                            
                         </div>
                     </div>
                 </div>

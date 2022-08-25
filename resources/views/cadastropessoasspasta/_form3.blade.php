@@ -38,8 +38,9 @@ switch ($form_mode) {
             <div class="input-group">
                 <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo"
                     value="{{ isset($eqp) ? $eqp->nome : old('nome') }}" {{ $form_mode == 'delete' ? 'disabled' : '' }}>
-                @error('nome')                                              {{-- - $form_mode == 'delete' ? 'disabled' : '' este mode desabilita ediçao caso for delete - --}}
-                    <div class="alert alert-danger">{{ $message }}
+                @error('nome')
+                <span class="alert alert-danger" role="alert">                                              {{-- - $form_mode == 'delete' ? 'disabled' : '' este mode desabilita ediçao caso for delete - --}}
+                <strong>{{ $message }}</strong>
                     @enderror
                 </div>
             </div>
@@ -64,7 +65,8 @@ switch ($form_mode) {
                         value="{{ isset($eqp) ? $eqp->bairro : old('bairro') }}"
                         {{ $form_mode == 'delete' ? 'disabled' : '' }}>
                     @error('bairro')
-                        <div class="alert alert-danger">{{ $message }}
+                    <span class="alert alert-danger" role="alert">
+                    <strong>{{ $message }}</strong>
                         @enderror
                     </div>
                 </div>
@@ -92,7 +94,8 @@ switch ($form_mode) {
                                 value="{{ isset($eqp) ? $eqp->telefone : old('telefone') }}"
                                 {{ $form_mode == 'delete' ? 'disabled' : '' }}>
                             @error('telefone')
-                                <div class="alert alert-danger">{{ $message }}
+                            <span class="alert alert-danger" role="alert">
+                            <strong>{{ $message }}</strong>
                                 @enderror
                             </div>
                         </div>
@@ -107,7 +110,8 @@ switch ($form_mode) {
                                     value="{{ isset($eqp) ? date('Y-m-d', strtotime($eqp->DataRequisicao)) : old('DataRequisicao') }}"
                                     {{ $form_mode == 'delete' ? 'disabled' : '' }}>  <!--pra passar a data recebida usar ? date('Y-m-d', strtotime($eqp->DataRequisicao))  -->
                                 @error('datanascimento')
-                                    <div class="alert alert-danger">{{ $message }}
+                                <span class="alert alert-danger" role="alert">
+                                <strong>{{ $message }}</strong>
                                     @enderror
                                 </div>
                             </div>
@@ -121,7 +125,8 @@ switch ($form_mode) {
                                     placeholder="ex: 000.000.000.00" value="{{ isset($eqp) ? $eqp->cpf : old('cpf') }}"
                                     {{ $form_mode == 'delete' ? 'disabled' : '' }}>
                                 @error('cpf')
-                                    <div class="alert alert-danger">{{ $message }}
+                                <span class="alert alert-danger" role="alert">
+                                <strong>{{ $message }}</strong>
                                     @enderror
                                 </div>
                             </div>
@@ -165,7 +170,8 @@ switch ($form_mode) {
                                     <option value="Feminino">Feminino</option>
                                     <select>
                                         @error('sexo')
-                                            <div class="alert alert-danger">{{ $message }}
+                                        <span class="alert alert-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
                                             @enderror
                                         </div>
                                           

@@ -10,17 +10,22 @@ use Illuminate\Http\Request;
 class EquipamentostesteController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
 
     { //variavel botão  
         $search = request('search');
                                   // variaveis que serão procuradas
+        $protos = Protos::with('DataRequisicao', date('2022-01-01'),$search.'%');
+       //  $protos = Protos::whereIn('DataRequisicao',[01,12], '%2022' . $search . '%');
+
         $protos = Protos::where('prazo', 'LIKE', '%' . $search . '%')
+        //modifiquei novamente verficar caso para de funcionar!!!!
             //nome Controller
-            ->orWhere('descricao', 'LIKE', '%' . $search . '%')
+            ->orWhere('descricao', 'LIKE', "%{$request->search}%")
             ->orWhere('DataRequisicao', 'LIKE', '%' . $search . '%')
-            ->orWhere('cadastropessoass_id', 'LIKE', '%' . $search . '%')//arrumar para buscar por pessoa!
+            ->orWhere('cadastropessoass_id', 'LIKE', "%{$request->search}%")//arrumar para buscar por pessoa!
             ->paginate(10);
+            
         //paginação
         //$protos = Protos::paginate(10);
         //aqui vai o nome tabela                  //passar função search
@@ -55,7 +60,7 @@ class EquipamentostesteController extends Controller
         $protos->prazo = $request->input('prazo');
         $protos->cadastropessoass()->associate($cadastropessoass);
         $protos->save();
-        \Session::flash('msg_create',"criado");
+        \Session::flash('message',"Cadastrado com Sucesso!");
     
     }else
     { 
@@ -63,7 +68,7 @@ class EquipamentostesteController extends Controller
     }
 
 
-       return redirect('/tabelaprotocolo')->with('success', 'Protocolo cadastrado com sucesso!');
+       return redirect('/tabelaprotocolo')->with('message', 'Protocolo cadastrado com sucesso!');
     }
     
 
@@ -100,7 +105,7 @@ class EquipamentostesteController extends Controller
         ]);
 
 
-        return redirect('/tabelaprotocolo')->with('success', 'Protocolo editado com sucesso!');
+        return redirect('/tabelaprotocolo')->with('message', 'Protocolo editado com sucesso!');
     }
 
    
@@ -108,6 +113,6 @@ class EquipamentostesteController extends Controller
     {
         $protocolo = Protos::find($id);
         $protocolo->delete();
-        return redirect('/tabelaprotocolo')->with('warning', 'Protocolo excluido com sucesso!');;
+        return redirect('/tabelaprotocolo')->with('message', 'Protocolo excluido com sucesso!');;
     }                    //retorno pra tabela
 }

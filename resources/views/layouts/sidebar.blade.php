@@ -65,6 +65,13 @@
                     </a>
                     </a>
                 </li>
+                <!--aqui colocamos auditoria -->
+                <li class="{{ request()->routeIs('auditoria') ? 'active' : '' }}">
+                    <a href="{{ route('auditoria') }}">
+                        <span class="sub-item">Auditoria</span>
+                    </a>
+                    </a>
+                </li>
                 <li class="{{ request()->routeIs('lista') ? 'active' : '' }}">
                     <a href="{{ route('lista') }}">
                         <span class="sub-item">Lista</span>

@@ -117,3 +117,6 @@ Route::post('/usuarios/add', 'UsuariosController@add')->name('add')->middleware(
 Route::get('/usuarios/{id}/edit', 'UsuariosController@edit')->name('edit')->middleware('auth');
 Route::delete('/usuarios/delete/{id}', 'UsuariosController@delete')->middleware('auth');
 Route::post('/usuarios/update/{id}', 'UsuariosController@update')->name('update')->middleware('auth');
+//auditoria
+Route::get('/auditoria', 'AuditoriaController@index')->name('auditoria')->middleware('auth');
+Route::get('/auditoria/{id}/detalhamento', 'AuditoriaController@detalhamento')->name('detalhamento')->middleware('auth');

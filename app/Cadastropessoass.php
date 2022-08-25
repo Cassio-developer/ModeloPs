@@ -4,10 +4,11 @@ namespace App;
 
 use App\Cadastropessoass;
 use Illuminate\Database\Eloquent\Model;
-
-class Cadastropessoass extends Model
-{    
-    
+use OwenIt\Auditing\Contracts\Auditable;
+//cassio audiotable                     //cassio audiotable          
+class Cadastropessoass extends Model implements Auditable
+{    //cassio audiotable
+    use \OwenIt\Auditing\Auditable;
     protected $table = "cadastropessoass";
     protected $fillable = [
         //sempre colocar as variaveis do banco aqui!
