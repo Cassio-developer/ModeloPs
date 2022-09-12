@@ -25,7 +25,7 @@
                         <label for="cadastropessoass_id" class="control-label">Pessoa</label>
                         <select name="cadastropessoass_id" class="form-control" style="width:250px" required
                             id="cadastropessoass_id">
-                            @foreach ($pessoas as $pessoa)
+                            @foreach ($pessoa as $pessoa)
                                 <option value="{{ $pessoa->id }}"
                                     @if (old('nome_id') == $pessoa->nome) {{ 'selected' }} @endif>
                                     {{ $pessoa->nome }}</option>
@@ -77,7 +77,23 @@
                                     <div class="alert alert-danger">{{ $message }}
                                     @enderror
                                 </div>
-
+                                
+                                <div class="form-group">
+                                <select required="required" style="background-color: #white" class="form-control"  name="departamento_id" id="departamento_id">
+                                    <option  value="">Selecione uma departamento</option>    
+                                    @foreach ($departamento as $dep)
+                                    <option  value="{{ $dep->id }}"> 
+                                    {{ $dep->departamento }}
+                                    </option>
+                                    @endforeach
+                                </select> 
+                            </div>
+                <div class="form-group">
+                    <input type="file" name="arquivo[]" class="custom-file-unput" id="arquivo" multiple >
+                   
+                    
+                </div>
+              
 </form>
 </div>
 </div>

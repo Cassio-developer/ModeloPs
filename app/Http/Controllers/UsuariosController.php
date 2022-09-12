@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use Redirect;
+use PDF;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 use Illuminate\Http\Request;
@@ -55,6 +56,15 @@ class UsuariosController extends Controller
         $usuario ->update( $request->all() );
         return redirect('/usuarios')->with('warning', 'atualizado com sucesso!');;
     }                    //retorno pra tabela
-}
+
+    
+       
+    
+    }
+
+
+
+
+
 
 

@@ -165,7 +165,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-
+        //cassiopdf
+        Barryvdh\DomPDF\ServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -180,6 +181,13 @@ return [
         App\Providers\RouteServiceProvider::class,
         //cassio
         OwenIt\Auditing\AuditingServiceProvider::class,
+        //cassiopdf
+        Barryvdh\DomPDF\ServiceProvider::class,
+      
+            // ...cassio
+            Spatie\Permission\PermissionServiceProvider::class,
+        
+        
     ],
 
     /*
@@ -231,7 +239,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-
+        //cassio
+        
+        'PdfMerger' => LynX39\LaraPdfMerger\Facades\PdfMerger::class,
     ],
 
 ];

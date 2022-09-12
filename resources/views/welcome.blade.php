@@ -30,7 +30,7 @@
                 <div class="card-body">
                     <h4 class="card-title">PDF Exemplo</h4>
                     <p class="card-text"></p>
-                    <a href="{{ route('pdf') }}" class="btn btn-primary stretched-link">Link lista</a>
+                    <a href="" class="btn btn-primary stretched-link">Link lista</a>
                 </div>
             </div>
         </div>

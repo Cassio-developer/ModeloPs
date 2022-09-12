@@ -27,7 +27,7 @@ class CreateAuditsTable extends Migration
             $table->string('tags')->nullable();
             $table->timestamps();
 
-            $table->index(['user_id', 'user_type','event','auditable','old_values','new_values']);
+            $table->index(['user_id', 'user_type','event']);
         });
     }
 

@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="card">
                     {{ Session::pull('message') }}
-                    <h3>Deletar Equipamento</h3>
+                    <h3>Deletar Cadastro?</h3>
                     <?php $form_mode = 'delete'; ?>
                     @include('cadastropessoasspasta._form3')
                 </div>

@@ -11,7 +11,7 @@
                     <div>
                         <div class="form-group col-md-3">
                             <label for="user_type" class="control-label">Usuario Tipo</label>
-                            <input type="text" class="form-control" name="user" id="user_type"
+                            <input type="text" class="form-control" name="user_type" id="user_type"
                                 value=" {{ isset($usuarios) ? $usuarios->user_type : old('user_type') }}"readonly>
                                 
                             <!--  readonly é igual ao required-->
@@ -20,7 +20,7 @@
                     <div>
                         <div class="form-group col-md-3">
                             <label for="user_id" class="control-label">Usuario Id</label>
-                            <input type="text" class="form-control" name="user" id="user_type"
+                            <input type="text" class="form-control" name="user_id" id="user_type"
                                 value=" {{ isset($usuarios) ? $usuarios->user_id : old('user_id') }}"readonly>
                                 
                             <!--  readonly é igual ao required-->
@@ -29,7 +29,7 @@
                     <div>
                         <div class="form-group col-md-3">
                             <label for="auditable" class="control-label"></label>
-                            <input type="text" class="form-control" name="user" id="auditable"
+                            <input type="text" class="form-control" name="auditable" id="auditable"
                                 value=" {{ isset($usuarios) ? $usuarios->auditable : old('auditable') }}"readonly>
                                 
                             <!--  readonly é igual ao required-->
@@ -38,7 +38,7 @@
                     <div>
                         <div class="form-group col-md-3">
                             <label for="url" class="control-label">Url</label>
-                            <input type="text" class="form-control" name="user" id="url"
+                            <input type="text" class="form-control" name="url" id="url"
                                 value=" {{ isset($usuarios) ? $usuarios->url : old('url') }}"readonly>
                                 
                             <!--  readonly é igual ao required-->
@@ -56,7 +56,7 @@
                     <div>
                         <div class="form-group col-md-3">
                             <label for="ip_address" class="control-label">Ip</label>
-                            <input type="text" class="form-control" name="user" id="ip_address"
+                            <input type="text" class="form-control" name="ip_address" id="ip_address"
                                 value=" {{ isset($usuarios) ? $usuarios->ip_address : old('ip_address') }}"readonly>
                                 
                             <!--  readonly é igual ao required-->
@@ -65,7 +65,7 @@
                     <div>
                         <div class="form-group col-md-7">
                             <label for="old_values" class="control-label">Valores Antigos</label>
-                            <input type="text" class="form-control" name="user" id="old_values"
+                            <input type="text" class="form-control" name="old_values" id="old_values"
                                 value=" {{ isset($usuarios) ? $usuarios->old_values : old('old_values') }}"readonly>
                                 
                             <!--  readonly é igual ao required-->
@@ -74,7 +74,7 @@
                     <div>
                         <div class="form-group col-md-7">
                             <label for="new_values" class="control-label">Novos Valores</label>
-                            <input type="text" class="form-control" name="user" id="new_values"
+                            <input type="text" class="form-control" name="new_values" id="new_values"
                                 value=" {{ isset($usuarios) ? $usuarios->new_values : old('new_values') }}"readonly>
                                 
                             <!--  readonly é igual ao required-->
@@ -83,7 +83,7 @@
                     <div>
                         <div class="form-group col-md-3">
                             <label for="event" class="control-label">Evento</label>
-                            <input type="text" class="form-control" name="user" id="event"
+                            <input type="text" class="form-control" name="event" id="event"
                                 value=" {{ isset($usuarios) ? $usuarios->event : old('event') }}"readonly>
                                 
                             <!--  readonly é igual ao required-->
@@ -92,7 +92,7 @@
                     <div>
                         <div class="form-group col-md-3">
                             <label for="attribute" class="control-label">Id</label>
-                            <input type="text" class="form-control" name="attribute" id="user"
+                            <input type="text" class="form-control" name="attribute" id="attribute"
                                 value=" {{ isset($usuarios) ? $usuarios->attribute : old('attribute') }}"readonly>
                                 
                             <!--  readonly é igual ao required-->

@@ -43,6 +43,8 @@ $app->singleton(
 
 //cassio
 $app->register(OwenIt\Auditing\AuditingServiceProvider::class);
+
+//cassio
 /*
 |--------------------------------------------------------------------------
 | Return The Application

@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-use App\Usuarios;
+//use App\Usuarios;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -16,7 +16,7 @@ class Usuarios extends Authenticatable
      *
      * @var array
      */
-    protected $table = "users";
+   // protected $table = "users";
 
     protected $fillable = [
         'name', 'email', 'password',

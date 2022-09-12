@@ -22,9 +22,9 @@ class AuditoriaController extends Controller
 
      //   var_dump($_POST);
         
-        foreach (Audit::all() as $flight) {
-            echo $flight->name;
-      }
+        //foreach (Audit::all() as $flight) {
+          //  echo $flight->name;
+     // }
        
         $usuarios = Audit::orderBy('old_values', 'desc')->get();
 
@@ -43,9 +43,9 @@ class AuditoriaController extends Controller
               ->orWhere('ip_address', 'LIKE', '%' . $search . '%')
               ->orWhere('user_agent', 'LIKE', '%' . $search . '%')
               ->orWhere('tags', 'LIKE', '%' . $search . '%')
-              ->paginate(50);
+              ->paginate(70);
           // cuidar a paginação default 10                         
-        return view('auditoria.index', compact('usuarios', 'search','flight'));
+        return view('auditoria.index', compact('usuarios', 'search'));
     
     }
 
@@ -55,7 +55,7 @@ class AuditoriaController extends Controller
        $usuarios = Audit::find($id);
 
        //$protocolo = Protos::find($id);
-
+       //$usuarios = Audit::all();
        //$pessoa = Cadastropessoass::all();
 
 

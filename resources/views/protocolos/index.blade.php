@@ -1,9 +1,14 @@
 @extends('layouts.master')
 @section('title', 'EXEMPLO')
 @section('content')
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+  <div class="container-fluid no-padding table-responsive-sm">
+    <table class="table table-striped nowrap" style="width:100%" id="protosss">
     <div class="conteudo-modal-title text-center">
         <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand">Navbar</a>
+            <a class="navbar-brand"></a>
             <div>
                 <!--input para pesquisar na pagina -->
                 <div class="col-sm-12">
@@ -38,7 +43,7 @@
                     <p>Não há cadastros para este dado informado!</p>
                 @endif
         </div>
-        @foreach ($protos as $equipamento1)
+        @foreach ($protos as $protocolo)
           
                 @endforeach
             </div>
@@ -47,43 +52,56 @@
         <!--aqui vai nome rota -->
         <a href="{{ route('cadastropessoass.create') }}" class="btn btn-primary">Incluir Cadastro Pessoa</a>
         <!--rota para cadastro pessoas -->
+        <a href="{{ route('pdfId')}}" class="btn btn-primary"> Relatório Geral PDF</a>
     </div>
-    
     
     <div class="row">
         <table class="table table-hover table table-bordered">
             <thead>
                 <tr>
-                    <!--verificar amanha -->
+                 
                     
                     <th>Id</th>
                     <th>Nome Pessoa</th>
                     <th>Prazo</th>
                     <th>Descrição</th>
                     <th>Data Requisição</th>
+                    <th>Departamento Id</th>
+                    <th>Id acompanhamento</th>
                     
                 </tr>
             </thead>
             <tbody>
-                @foreach ($protos as $equipamento1)
-                    <tr>       <!--verificar amanha -->
+                @foreach ($protos as $protos)
+                    <tr>       
                        
-                        <td>{{ $equipamento1->id }}</td>
-                        <td>{{ $equipamento1->cadastropessoass->nome }}</td>
-                        <td>{{ $equipamento1->prazo }}</td>
-                        <td>{{ $equipamento1->descricao }}</td>
-                        <td>{{ $equipamento1->DataRequisicao }}</td>
+                        <td>{{ $protos->id }}</td>
+                        <td>{{ $protos->cadastropessoass->nome }}</td>
+                        <td>{{ $protos->prazo }}</td>
+                        <td>{{ $protos->descricao }}</td>
+                        <td>{{ $protos->DataRequisicao }}</td>
+                        <td>{{ $protos->departamento_id }}</td>
+                        <td>{{ $protos->user_id }}</td>
+                        
+                        
                         <td>
                             <ul class="list-inline">
                                 <li>
-                                    <a
-                                        href="{{ route('editprot', ['equipamento1' => $equipamento1]) }}">Editar</a>
+                                    <a href="{{ route('editprot', ['protocolo' => $protocolo]) }}">Editar</a>
+                                </li>                        
+                                <li>   
+                                       <a href="{{ route('deleteprot', ['protocolo' => $protocolo]) }}">Deletar</a>
                                 </li>
-                                <li>
-                                    <a
-                                        href="{{ route('deleteprot', ['equipamento1' => $equipamento1]) }}">Deletar</a>
-                                </li>
-                            </ul>
+                                <td>             <!--rota para pdf unico -->
+                                    <a href="{{ route('unicopdf',['protos' => $protos])}}"  class="btn btn-danger">pdf</button>
+                                    </a>
+                                </td>
+                                <td>             <!--rota para pdf unico -->
+                                </ul><a class="btn btn-primary" href="{{ route('acompanhamento', ['id'=>$protocolo->id]) }}">Registrar acompanhamento</a>
+                                    </a>
+                                </td>
+                                
+                                
                         </td>
                     </tr>
                     <div>
@@ -92,5 +110,46 @@
     @endforeach
     </tbody>
     </table>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>  
 
+<script>
+    $(document).ready(function () {
+    $('#protosss').DataTable({
+        select: false,
+        responsive: true,
+        "order": [
+            [0, "asc"]
+        ],
+        "info": false,
+        "sLengthMenu": false,
+        "bLengthChange": false,
+        "oLanguage": {
+
+            "sEmptyTable": "Nenhum registro encontrado",
+            "sInfo": "Mostrando de START até END de TOTAL registros",
+            "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+            "sInfoFiltered": "(Filtrados de MAX registros)",
+            "sInfoPostFix": "",
+            "sInfoThousands": ".",
+            "sLengthMenu": "MENU resultados por página",
+            "sLoadingRecords": "Carregando...",
+            "sProcessing": "Processando...",
+            "sZeroRecords": "Nenhum registro encontrado",
+            
+            "oPaginate": {
+                "sNext": "Próximo",
+                "sPrevious": "Anterior",
+                "sFirst": "Primeiro",
+                "sLast": "Último"
+            },
+            "oAria": {
+                "sSortAscending": ": Ordenar colunas de forma ascendente",
+                "sSortDescending": ": Ordenar colunas de forma descendente"
+            }
+        }
+    });
+});
+</script>
 @endsection
+
+

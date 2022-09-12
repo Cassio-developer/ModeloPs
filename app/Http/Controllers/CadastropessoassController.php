@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use PDF;//usar pdf aqui relatorio
 use App\Cadastropessoass;  //CUIDAR COLOQUEI O MODEL EM CIMA NAMESPACE DEU ERRO!!
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdateUserFormRequest;
+use Illuminate\Support\Facades\Validator;
 
 class CadastropessoassController extends Controller
 {
@@ -36,8 +38,8 @@ class CadastropessoassController extends Controller
             ->orWhere('bairro', 'LIKE', '%' . $search . '%')
             ->orWhere('sexo', 'LIKE', '%' . $search . '%')
             ->orWhere('datanascimento', 'LIKE', '%' . $search . '%')
-            ->orWhere('complemento', 'LIKE', '%' . $search . '%')
-            ->paginate(50);
+            ->orWhere('complemento', 'LIKE', '%' . $search . '%')->get();
+           
         // cuidar a paginação default 10   
         //paginação!
         //$cadastropessoass = Cadastropessoass::paginate(12);
@@ -83,6 +85,28 @@ class CadastropessoassController extends Controller
             'cpf' => 'required|cpf',
       
     ]);
+    $validator = Validator::make($request->all(), [
+        'nome' => ['required'],
+        'datanascimento' => ['required'],
+        'cpf' => ['required', 'unique:cadastropessoass', 'cpf'],
+        'sexo' => ['required'],
+
+
+    ], [
+        'cpf.cpf' => 'CPF inválido',
+        'cpf.unique' => 'CPF ja cadastrado.',
+        'nome.required' => 'O campo nome é obrigatório',
+        'datanascimento.required' => 'O campo data de nascimento é obrigatório',
+        'sexo.required' => 'O campo sexo é obrigatório',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('cadastropessoass')
+            ->withErrors($validator)
+            ->withInput();
+    }
+
+   
     
     
     $url = $request->get('redirect_to', route('cadastropessoass.index'));
@@ -90,7 +114,7 @@ class CadastropessoassController extends Controller
         $dados = $request->all();
         Cadastropessoass::create($dados);
         $request->session()->flash('message', ' Cadastrado com Sucesso');
-        \Session::flash('message',"Cadastrado com sucessodo");
+        \Session::flash('message',"Cadastrado com sucesso!");
     
     }else
     { 

@@ -43,7 +43,33 @@
                             </li>
 
                 </li>
-                <!--aqui colocamos NOME ROUTES -->
+            
+                
+                <li class="{{ request()->routeIs('lista') ? 'active' : '' }}">
+                    <a href="{{ route('lista') }}">
+                        <span class="sub-item">Lista</span>
+                    </a>
+
+                <li class="{{ request()->routeIs('pdf') ? 'active' : '' }}">
+                    <a href="">
+                        <span class="sub-item">PDF</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        </li>
+        <li class="nav-item">
+            <a data-toggle="collapse" href="#sidebarLayouts">
+                <i class="fas fa-sun" style="font-size:20px" actived></i>
+                <p>Projeto Cassio</p>
+                <span class="caret"></span>
+            </a>
+            <div class="expandable collapse" id="sidebarLayouts">
+                <ul class="nav nav-collapse">
+                    <li class="active'">
+                       
+
+                        <!--aqui colocamos NOME ROUTES -->
                 <li class="{{ request()->routeIs('tabelaprotocolo') ? 'active' : '' }}">
                     <a href="{{ route('tabelaprotocolo') }}">
                         <span class="sub-item">Protocolos</span>
@@ -57,7 +83,7 @@
                     </a>
                     </a>
                 </li>
-                </li>
+                
                 <!--aqui colocamos NOME ROUTES -->
                 <li class="{{ request()->routeIs('usuarios') ? 'active' : '' }}">
                     <a href="{{ route('usuarios') }}">
@@ -72,38 +98,23 @@
                     </a>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('lista') ? 'active' : '' }}">
-                    <a href="{{ route('lista') }}">
-                        <span class="sub-item">Lista</span>
-                    </a>
-
-                <li class="{{ request()->routeIs('pdf') ? 'active' : '' }}">
-                    <a href="{{ route('pdf') }}">
-                        <span class="sub-item">PDF</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+            </li>
+            <!--aqui colocamos auditoria -->
+            <li class="{{ request()->routeIs('cadastrodepart') ? 'active' : '' }}">
+                <a href="{{ url('cadastrodepart')}}">
+                    <span class="sub-item">Cadastrar novo departamento</span>
+                </a>
+                </a>
+            </li>
         </li>
-        <li class="nav-item">
-            <a data-toggle="collapse" href="#sidebarLayouts">
-                <i class="fas fa-sun" style="font-size:20px" actived></i>
-                <p>Opção 2</p>
-                <span class="caret"></span>
+        <!--aqui colocamos auditoria -->
+        <li class="{{ request()->routeIs('tabeladepart') ? 'active' : '' }}">
+            <a href="{{ url('tabeladepart')}}">
+                <span class="sub-item">Lista de Departamento</span>
             </a>
-            <div class="expandable collapse" id="sidebarLayouts">
-                <ul class="nav nav-collapse">
-                    <li class="active'">
-                        <a href="#">
-                            <span class="sub-item">Página 1</span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="#">
-                            <span class="sub-item">Página 2</span>
-                        </a>
-                    </li>
-                </ul>
+            </a>
+        </li>
+                 
             </div>
         </li>
         <li class="nav-item">

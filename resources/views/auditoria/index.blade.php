@@ -3,7 +3,7 @@
 @section('content')
     <div class="conteudo-modal-title text-center">
         <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand">Navbar</a>
+            <a class="navbar-brand"></a>
             <div>
                 <!--input para pesquisar na pagina -->
                 <div class="col-sm-12">
@@ -27,10 +27,10 @@
                 </strong>
             @endif
             @if (count($usuarios) == 0 && $search)
-                <strong class="alert alert">Não foi possivel achar cadastros para este nome: {{ $search }}! <a
+                <strong class="alert alert">Não foi possivel achar auditaveis para este nome : {{ $search }}! <a
                         href="{{ route('auditoria') }}">Voltar</a></strong>
             @elseif(count($usuarios) == 0)
-                <p>Não há cadastros para este dado informado!</p>
+                <p>Não há auditoria para este dado informado!</p>
             @endif
         </div>
     </div>
@@ -46,7 +46,6 @@
             <thead>
                 <tr>
                     <!--verificar amanha -->
-
                     <th>Id</th>
                     <th>Usuario Tipo</th>
                     <th>Usuario Id</th>
@@ -59,7 +58,7 @@
             </thead>
             <tbody>
                 @if (count($usuarios) == 0)
-                <div><strong>Não possui registros!</strong></div>
+                <div><strong>Não possui auditoria!</strong></div>
             @else
                 @foreach ($usuarios as $usuario)
                     <tr>
@@ -72,8 +71,6 @@
                         <td>{{ App\Cadastropessoass::whereId($usuario->user_id)->pluck('nome') }}</td>
                         <!--nome usuario -->
                         <td>{{ date('d-m-Y H:i:s', strtotime($usuario->created)) }}</td>
-
-
                         <td>
                             <ul class="list-inline">
                                 <li>
