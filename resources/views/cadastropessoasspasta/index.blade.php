@@ -1,23 +1,31 @@
 @extends('layouts.master')
 @section('title', 'EXEMPLO')
 @section('content')
-
+           
+@role('admin')
+<strong class="alert alert">   Acesso de Admin!!<a></strong>
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    </head>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet">
+        </head>
     <div class="conteudo-modal-title text-center">
         <nav class="navbar navbar-light bg-light">
             <a class="navbar-brand">Navbar</a>
             <div>
                 <!--input para pesquisar na pagina -->
                 <div class="col-sm-12">
-                    <form action="{{ route('cadastropessoass.index') }}" method="GET">
-                        {{ csrf_field() }}
-                        <input type="search" class="form-control input-sm" name="search" value="{{ $search }}">
-                        <button type="submit" class="btn btn-primary my-2 my-sm-0-dark" type="search">Pesquisar</button>
-                    </form>
-                </div>
+                    <form class="navbar-form">
+                      <div class="input-group no-border">
+                          <input type="text" value="{{ $search }}" class="form-control" placeholder="Pesquisar..." name="search">
+                          <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                            <i class="material-icons">search</i>
+                            <div class="ripple-container"></div>
+                          </button>
+                          </div>
+                        </form>
+ 
         </nav>
     </div>
     <div class="card-body">
@@ -48,9 +56,11 @@
         @foreach ($cadastropessoass as $cadastropessoas)
         @endforeach
         <div class="card-footer col-12 modal-title text-center">
-
+           
+    
+ 
             <a href="{{ route('cadastropessoass.create') }}" class="btn btn-primary">Cadastro Pessoas</a>
-
+            
             <!--aqui vai nome rota -->
             <a href="{{ route('registrar') }}" class="btn btn-primary">Cadastro Protocolo</a>
 
@@ -106,7 +116,7 @@
             <div>
             </div>
         </div>
-
+       
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
@@ -149,4 +159,8 @@
                 });
             });
         </script>
+         @else
+         <strong class="alert alert">Você não tem permissões para Cadastro de Pessoas!! Volte a sua area!<a></strong>
+         
+         @endrole
     @endsection

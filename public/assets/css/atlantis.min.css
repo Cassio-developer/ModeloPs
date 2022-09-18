@@ -5258,13 +5258,16 @@ label {
 }
 
 .card-profile .user-stats .title {
-    color: #7d7b7b
+    color: #7d7b7b;
+    
 }
 
 .card-profile .card-header {
-    border-bottom: 0;
+    border-bottom: 15;
     height: 100px;
-    position: relative
+    position: relative;
+    border-top: 15;
+ /* cassio  */
 }
 
 .card-profile .card-body {

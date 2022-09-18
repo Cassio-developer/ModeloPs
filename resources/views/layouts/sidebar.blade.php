@@ -3,6 +3,13 @@
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <ul class="nav nav-primary">
+                <div class="fas fa-sign-out-alt">
+                <img class="avatar" src="{{url('assets/img/default-avatar.png')}}" alt="">
+                {{-- MOSTRA NOME USUARIO LOGADO --}}
+                <a  class="badge badge-success">
+                    Seja bem vindo,  {{Auth::user()->name}}
+                  </a>
+                </div>
 
                 {{-- MOSTRA NOME USUARIO LOGADO --}}
 
@@ -84,6 +91,7 @@
                     </a>
                 </li>
                 
+                @role('admin')
                 <!--aqui colocamos NOME ROUTES -->
                 <li class="{{ request()->routeIs('usuarios') ? 'active' : '' }}">
                     <a href="{{ route('usuarios') }}">
@@ -91,6 +99,10 @@
                     </a>
                     </a>
                 </li>
+
+                @else
+
+@endrole
                 <!--aqui colocamos auditoria -->
                 <li class="{{ request()->routeIs('auditoria') ? 'active' : '' }}">
                     <a href="{{ route('auditoria') }}">
@@ -99,6 +111,9 @@
                     </a>
                 </li>
             </li>
+           
+             
+            
             <!--aqui colocamos auditoria -->
             <li class="{{ request()->routeIs('cadastrodepart') ? 'active' : '' }}">
                 <a href="{{ url('cadastrodepart')}}">
@@ -107,14 +122,46 @@
                 </a>
             </li>
         </li>
+        
         <!--aqui colocamos auditoria -->
         <li class="{{ request()->routeIs('tabeladepart') ? 'active' : '' }}">
             <a href="{{ url('tabeladepart')}}">
                 <span class="sub-item">Lista de Departamento</span>
             </a>
             </a>
+        </li><!--somente a estes usuarios sera visivel -->
+       
+@role('admin')
+
+        <!--Acesso permitido! -->
+         <!--aqui colocamos auditoria -->
+         <li class="{{ request()->routeIs('users/*') ? 'active' : '' }}">
+            <a href="{{route('users.index')}}">
+                <span class="sub-item">Administração</span>
+            </a>
+            </a>
+        </li><!--Acesso permitido! -->
+       
+        
+         <!--aqui colocamos auditoria -->
+         <li class="{{ request()->routeIs('users/*') ? 'active' : '' }}">
+            <a href="{{route('roles.index')}}">
+                <span class="sub-item">Administração Permissões</span>
+            </a>
+            </a>
         </li>
-                 
+         <!--aqui colocamos auditoria -->
+         <li class="{{ request()->routeIs('users/*') ? 'active' : '' }}">
+            <a href="{{url('register')}}">
+                <span class="sub-item">Criar usuario</span>
+            </a>
+            </a>
+        </li>
+      
+@else
+
+@endrole
+      
             </div>
         </li>
         <li class="nav-item">

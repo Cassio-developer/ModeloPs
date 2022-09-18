@@ -186,8 +186,8 @@ return [
       
             // ...cassio
             Spatie\Permission\PermissionServiceProvider::class,
-        
-        
+            Socieboy\Alerts\AlertServiceProvider::class,
+        //alert cass
     ],
 
     /*

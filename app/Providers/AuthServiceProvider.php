@@ -13,18 +13,27 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+        Post::class => PostPolicy::class,
     ];
-
+ 
     /**
-     * Register any authentication / authorization services.
+     * Register any application authentication / authorization services.
      *
      * @return void
      */
     public function boot()
     {
         $this->registerPolicies();
-
+ 
         //
     }
 }
+  //  public function boot()
+//{
+   
+
+    //Gate::before(function ($user, $ability) {
+       // return $user->hasTokenPermission($ability) ?: null;
+   // });
+//}
+//}

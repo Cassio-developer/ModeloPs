@@ -30,10 +30,11 @@ class DepartamentoController extends Controller
 
     public function indexdepartamento()
     {
+        $user = User::all();
 
         $departamento = \App\Departamento::all();
 
-        return view('departamentos/cadastrodepart', compact('departamento', $departamento));
+        return view('departamentos/cadastrodepart', compact('departamento', $departamento,'user',$user));
     }
 
 
@@ -81,7 +82,7 @@ class DepartamentoController extends Controller
         $departamento = Departamento::find($id);
         $user = User::all();
         
-        return view('departamentos/atribuir', compact('departamento', $departamento, 'user', $user));
+        return view('departamentos/atribuir', compact('departamento', $departamento, 'user', $user))->with('success', 'Usuario atribuido cadastrado com sucesso!');
     }
 
     public function savandoatribuicao(Request $request, $id)

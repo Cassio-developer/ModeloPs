@@ -1,9 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
+
 
 class LoginController extends Controller
 {
@@ -25,7 +32,21 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    //protected $redirectTo = '/';
+
+    protected function redirectTo()
+    {
+        //verifico o tipo do usuario logado
+        $user = Auth::user();
+
+        if ($user->hasRole('AdmSistema')) {
+            return route('usuarios');
+        } else if ($user->hasRole('admin')) {
+            return route('usuarios');
+        } else if ($user->hasRole('operador')) {
+            return route('home');
+        }
+    }
 
     /**
      * Create a new controller instance.

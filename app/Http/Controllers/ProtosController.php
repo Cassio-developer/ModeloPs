@@ -19,12 +19,12 @@ use App\Http\Requests\SeriesFormRequest;
 class ProtosController extends Controller
 {
     
-    public function index(Request $request)
+    public function indextabelaprotoco()
 
     { //variavel botão  
         $search = request('search');
                                   // variaveis que serão procuradas
-        $protos = Protos::with('DataRequisicao', date('2022-01-01'),$search.'%');
+        
         //$user_id = Acompanhamentos::find($id);
        // $protos = Acompanhamentos::whereIn('user_id', $user_id)->get();
 
@@ -38,23 +38,28 @@ class ProtosController extends Controller
       // $departamento = Departamento::all();
         //$usuario = User::find(Auth::id());
       // Departamento_user::where('user_id', $departamento->user_id)
-       $departamento = User::all()->pluck('departamento_id');
-      // $departamento = User::all()->pluck('departamento_id');
        $user = Auth::user();
-       $protos = Protos::whereIn('departamento_id', $departamento)->get();
 
-        $protos = Protos::where('prazo', 'LIKE', '%' . $search . '%')
         //modifiquei novamente verficar caso para de funcionar!!!!
             //nome Controller
-            ->orWhere('descricao', 'LIKE', "%{$request->search}%")
-            ->orWhere('DataRequisicao', 'LIKE', '%' . $search . '%')
-            ->orWhere('cadastropessoass_id', 'LIKE', "%{$request->search}%")->get();
-          
+            $protos = Protos::where('descricao', 'LIKE', '%' . $search . '%')
             
+            ->orWhere('DataRequisicao', 'LIKE', '%' . $search . '%')
+            ->orWhere('cadastropessoass_id', 'LIKE', '%' . $search . '%')->get();
+            $protos = Protos::paginate(10);
+            //$departamento = $user->departamento()->pluck('departamento_id');
+            //$protocolo = Protocolo::whereIn('departamento_id', $departamento)->get();
+            //error_log('user_id'. $user->id . 'departamento' . $departamento);
+            //return view('protocolo/tabelaprot', compact('pessoa', $pessoa, 'protocolo', $protocolo));
+            
+
         //paginação
         //$protos = Protos::paginate(10);
         //aqui vai o nome tabela                  //passar função search
-        return view('protocolos.index', compact('protos',$protos, 'search',$search));
+        
+        return view('protocolos/index', compact('protos',$protos, 'search'));
+       // return redirect('/tabelaprotocolo')->with('message', 'Protocolo editado com sucesso!');
+
     }              //nome pasta               //aqui vai o nome tabela
 
     
@@ -73,8 +78,12 @@ class ProtosController extends Controller
         $user = Auth::user();
         //$departamento = User::departamento('profiles')->get();
        // $departamento = User::departamento('departamento_id')->get();
-        $departamento = $user->departamento()->get();
-        return view('protocolos.create', compact('pessoa', $pessoa, 'protocolo', $protocolo,'departamento', $departamento));
+        //$departamento = $user->departamento()->get();
+        $departamento = Departamento::all();
+
+        $departamento->departamento = $request->input('departamento_id');
+
+        return view('protocolos/create', compact('pessoa', $pessoa, 'protocolo', $protocolo,'departamento', $departamento));
        // $pessoa->save();
         //analisar esta parte depois, pois não está pasando variavel pessoa!!
        // return view('protocolos.create', ['action' => route('saveprot'), 'method' => 'post', 'pessoas' => $pessoa]);
@@ -87,7 +96,10 @@ class ProtosController extends Controller
         //dd($request);
         //  if (! $request->has('cancel') ){ caso usuario click em cancel!
          //  if (! $request->has('cancel') )
+         $user = Auth::user();
+         $departamento = $user->departamento()->get();
          $departamento = Departamento::find($request->input('departamento_id'));
+
         // $protos->departamento = $request->input('departamento');
          $cadastropessoass = Cadastropessoass::find($request->input('cadastropessoass_id'));
         $protos = new Protos($request->all());
@@ -96,6 +108,7 @@ class ProtosController extends Controller
         $protos->prazo = $request->input('prazo');
         $protos->cadastropessoass()->associate($cadastropessoass);
         $protos->departamento()->associate($departamento);
+        $protos->save();
 
         
       
@@ -115,7 +128,6 @@ class ProtosController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        $protos->save();
     
       if (!empty($request->allFiles()['arquivo'])) {
       for ($i = 0; $i < count($request->allFiles()['arquivo']); $i++){
@@ -129,7 +141,6 @@ class ProtosController extends Controller
         $anexos->save();                     //pasta criada laravel
         //dd($request->file('arquivos'));
       }
-
       \Session::flash('message',"Cadastrado com Sucesso!");
       if (! $request->has('cancel') )
     
@@ -137,7 +148,10 @@ class ProtosController extends Controller
   
 
       }
-       return redirect('/tabelaprotocolo')->with('message', 'Protocolo cadastrado com sucesso!');
+      return redirect('/tabelaprotocolo')->with('message', 'Protocolo cadastrado com sucesso!');
+
+      //return view('protocolos.index', compact('protos', $protos, 'departamento', $departamento))->with('message', 'Protocolo cadastrado com sucesso!');
+
     }
 
     public function upload(Request $request)

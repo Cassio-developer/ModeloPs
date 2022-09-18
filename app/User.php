@@ -1,14 +1,15 @@
 <?php
 
 namespace App;
+
 use App\User;
 //use App\RegisterController;
-
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
-
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;   
 class User extends Authenticatable implements Auditable
 {   
     use \OwenIt\Auditing\Auditable;
@@ -19,11 +20,11 @@ class User extends Authenticatable implements Auditable
      *
      * @var array
      */
-    
-    protected $table = "users";
-
+    //public $guard_name = 'api';
+    //protected $table = "users";
+    //protected $guard_name = 'web';
     protected $fillable = [
-        'name', 'email', 'cpf', 'role', 'password','created_at','updated_at',
+        'name', 'email', 'cpf','password',
     ];
     protected $primaryKey = 'id';
     /**
@@ -44,6 +45,20 @@ class User extends Authenticatable implements Auditable
         'email_verified_at' => 'datetime',
     ];
 
+
+    
+    public function isAdministrator() {
+        return $this->roles()->where('name', 'AdministradorTI')->exists();
+        return $this->roles()->where('name', 'Administradordosistema')->exists();
+        return $this->roles()->where('name', 'Operador')->exists();
+     }
+   
+//public function isAdministrator() {
+       // return $this->roles()->where('name', 'AdministradorTI')->exists();
+//return $this->roles()->where('name', 'Administradordosistema')->exists();
+       // return $this->roles()->where('name', 'Operador')->exists();
+   //  }
+   
     public function acompanhamento() {
         return $this->hasMany(\App\Acompanhamentos::class);
     }
@@ -51,5 +66,23 @@ class User extends Authenticatable implements Auditable
     public function departamento() {
         return $this->belongsToMany(\App\Departamento::class);
 
+//DEPOIS VERIFICAR SE COLOCAR DE NOVO ELE SOME AS VISUALIZAÇOES DE PERMISSÕES DA PAGINA USUARIO
 }
+public function roles(){
+    return $this->belongsToMany(Role::class,'user_role');
+}
+public function edit() {
+    return $this->belongsToMany(\App\User::class);
+}
+
+//public function roles(){
+  //  return $this->belongsToMany(Role::class,'user_role');
+//}
+ 
+//public function groups(){
+  //  return $this->belongsToMany(Group::class,'user_group');
+//}
+//public function permissions(){
+   // return $this->belongsToMany(Permission::class,'role_permission');
+//}
 }

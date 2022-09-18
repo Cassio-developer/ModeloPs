@@ -37,9 +37,11 @@ class RegisterController extends Controller
      * @return void
      */
     public function __construct()
-    {
-        $this->middleware('guest');
-    }
+{
+    $this->middleware(['AdmSistema' OR 'AdmTI']);
+    
+   
+}
 
     /**
      * Get a validator for an incoming registration request.
@@ -47,29 +49,67 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'cpf' => ['required', 'string', 'cpf', 'unique:users'],
-        ]);
-    }
+    
+    
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'cpf' => $data['cpf'],
-            'password' => Hash::make($data['password']),
-        ]);
-    }
+
+public function index() {
+
+    $user=Auth::user();
+
+    return view('auth/register', compact('user'));
+}
+/**
+ * Get a validator for an incoming registration request.
+ *
+ * @param  array  $data
+ * @return \Illuminate\Contracts\Validation\Validator
+ */protected function validator(array $data)
+ {
+    return Validator::make($data, [
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'password' => ['required', 'string', 'min:8', 'confirmed'],
+        'cpf' => ['required', 'string', 'cpf', 'unique:users'],
+    ],
+
+[
+    'name.required' => 'Nome é obrigatório',
+    'name.string' => 'Somente letras',
+    'name.max' => 'Máximo 255 caracteres',
+    'email.required' => 'Email é obrigatório',
+    'email.email' => 'Formato errado',
+    'email.max' => 'Máximo 255 caracteres',
+
+    'email.unique' => 'E-mail já cadastrado',
+    'cpf.required' => 'CPF é obrigatório',
+    'cpf.max' => 'Máximo 14 numeros',
+    'cpf.unique' => 'CPF já cadastrado',
+    'cpf.cpf' => 'CPF inválido',
+    'password.required' => 'Senha é obrigatório',
+    'password.min' => 'Minimo 8 caracteres',
+    'password.confirmed' => 'Senhas precisam ser iguais',
+] //regras da validação de criação usuario 
+);
+}
+
+/**
+ * Create a new user instance after a valid registration.
+ *
+ * @param  array  $data
+ * @return \App\User
+ */
+protected function create(array $data)
+{
+    
+
+    return User::create([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'cpf' => $data['cpf'],
+        'password' => Hash::make($data['password']),
+    ]);
+}
+
+
 }

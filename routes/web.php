@@ -73,11 +73,12 @@ Route::group(['middleware' => 'web'], function(){
     //Route::resource('/equipamento', 'EquipamentostesteController')->except([
        // 'show', 'edit'
 
-    Route::post('/saveprot', 'ProtosController@cadastroprotocolo')->name('saveprot')->middleware('auth');
-    
+        Route::get('/tabelaprotocolo', 'ProtosController@indextabelaprotoco')->name('tabelaprotocolo')->middleware('auth');
+
     Route::get('/registrar', 'ProtosController@registrarcadastro')->name('registrar')->middleware('auth');
 
-    Route::get('/tabelaprotocolo', 'ProtosController@index')->name('tabelaprotocolo')->middleware('auth');
+    Route::post('/salvandoprotocolo', 'ProtosController@cadastroprotocolo')->name('saveprot')->middleware('auth');
+
     
     Route::get('/acompanhamento/{id}', 'ProtosController@acompanhamentoprotocolo')->name('acompanhamento')->defaults('id', 'acomp')->middleware('auth');
 
@@ -156,4 +157,40 @@ Route::get('/tabeladepart', 'DepartamentoController@tabeladepartamento')->name('
 Route::get('tabeladepart/atribuir/{id}', 'DepartamentoController@atribuirusuario')->name('atribuir')->middleware('auth');
 
 Route::post('saveatribuir/{id}', 'DepartamentoController@savandoatribuicao')->name('atribuirsalvando')->middleware('auth');
+
+//Route::group([
+  //  'middleware' => ['middleware' => 'web'],
+//], function () {
+
+  //  Route::get('/dashboard', 'AdministradorController@index')->name('dashboard');
+
+   // Route::get('/users/create', 'AdministradorController@createUsers')->name('users.create');
+
+   // Route::post('/users/store', 'AdministradorController@storeUsers')->name('users.store');
+//});
+Route::get('/', 'HomeController@index')->middleware('auth');
+//Route::get('/home', [HomeController::class, 'index'])->name('home');
+  
+//Route::group(['middleware' => ['auth']], function() {
+  //  Route::resource('roles', RoleController::class);
+   // Route::resource('users', UserController::class);
+
+//});
+//Route::group(['middleware' => ['auth', 'auth.admin'], function () {
+    // Minhas rotas da administração aqui
+//});
+
+ //amanhga verificar porque nao esta mostarndo os menus pra super ususario
+Route::group([ 'middleware' => ['auth', 'auth.admin'] ,
+],function() {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+   
+});
+
+Route::delete('/roles/{id}',  'RoleController@destroy')->name('destroy')->middleware('auth');
+
+Route::delete('/users/{id}',  'UserController@destroy')->name('destroy')->middleware('auth');
+Route::put('/users/{user}', 'UserController@update')->name('users.update');
+
 Auth::routes();

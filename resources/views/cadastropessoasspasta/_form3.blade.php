@@ -15,8 +15,6 @@ switch ($form_mode) {
         break;
 }
 @endphp
-
-
 <form action={{ $action }} method="post">
     @csrf
 

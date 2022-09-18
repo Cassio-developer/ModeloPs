@@ -3,22 +3,28 @@
 @section('content')
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  </head>
+  
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+</head>
   <div class="container-fluid no-padding table-responsive-sm">
     <table class="table table-striped nowrap" style="width:100%" id="protosss">
     <div class="conteudo-modal-title text-center">
         <nav class="navbar navbar-light bg-light">
             <a class="navbar-brand"></a>
             <div>
-                <!--input para pesquisar na pagina -->
-                <div class="col-sm-12">
-                    <form action="{{ route('tabelaprotocolo') }}" method="GET">
-                        {{ csrf_field() }}
-                        <input type="search" class="form-control input-sm" name="search" value="{{ $search }}">
-                        <button type="submit" class="btn btn-primary my-2 my-sm-0-dark"
-                            type="search">Pesquisar</button>
-                    </form>
-                </div>
+                <form action="{{ route('tabelaprotocolo') }}" method="GET">
+                    {{ csrf_field() }}
+                    <div class="col-sm-12">
+                              <form class="navbar-form">
+                                <div class="input-group no-border">
+                                    <input type="text" value="{{ $search }}" class="form-control" placeholder="Pesquisar..." name="search">
+                                    <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                      <i class="material-icons">search</i>
+                                      <div class="ripple-container"></div>
+                                    </button>
+                                    </div>
+                                  </form>  
         </nav>
         <div class="card-body">
             @if (session('message'))
@@ -26,6 +32,7 @@
                 </div>
             @endif
         </div>
+         
         <div class="conteudo-modal-title text-center">
             <h3>Para que seja registrado o protocolo, portanto, primeiro a pessoa demandante terá de ser cadastrada no
                 cadastro de pessoas!.</h3>
@@ -36,7 +43,8 @@
             @else
                 <strong><h2>Busca de Protocolo:{{ $search }}</h2></strong>
             @endif
-            @if (count($protos) == 0 && $search) 
+            @if (count($protos) == 0 && $search)
+           
                     <strong class="alert alert" >Não foi possivel achar cadastros para este nome: {{ $search }}! <a
                             href="{{ route('tabelaprotocolo') }}">Voltar</a></strong>
                 @elseif(count($protos) == 0)
@@ -49,9 +57,17 @@
             </div>
     </div>
     <div class="card-footer col-12 modal-title text-center">
+ 
+@role('admin')
+<strong class="alert alert">   Acesso de Admin!!<a></strong>
+
         <!--aqui vai nome rota -->
         <a href="{{ route('cadastropessoass.create') }}" class="btn btn-primary">Incluir Cadastro Pessoa</a>
         <!--rota para cadastro pessoas -->
+@else
+<strong class="alert alert">Você não tem permissões para Cadastrar Usuarios!<a></strong>
+
+@endrole
         <a href="{{ route('pdfId')}}" class="btn btn-primary"> Relatório Geral PDF</a>
     </div>
     
@@ -67,7 +83,7 @@
                     <th>Descrição</th>
                     <th>Data Requisição</th>
                     <th>Departamento Id</th>
-                    <th>Id acompanhamento</th>
+                    <th>Departamento</th>
                     
                 </tr>
             </thead>
@@ -81,7 +97,7 @@
                         <td>{{ $protos->descricao }}</td>
                         <td>{{ $protos->DataRequisicao }}</td>
                         <td>{{ $protos->departamento_id }}</td>
-                        <td>{{ $protos->user_id }}</td>
+                        <td>{{ $protos->departamento->departamento }}</td>
                         
                         
                         <td>

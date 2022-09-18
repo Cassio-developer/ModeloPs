@@ -17,7 +17,9 @@
 	<strong>{{ $message }}</strong>
 </div>
 @endif
-
+<div class="pull-right">
+    <a class="btn btn-primary" href="{{ url ('/')}}"> voltar</a>
+</div>
 <form action="{{ route('atribuirsalvando', ['id'=>$departamento->id]) }}" method="POST" class="form-horizontal" id="formProduto" enctype="multipart/form-data">
     @csrf               
     @method('POST')

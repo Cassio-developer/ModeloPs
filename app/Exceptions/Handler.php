@@ -37,6 +37,25 @@ class Handler extends ExceptionHandler
         parent::report($exception);
     }
 
+
+ //ver o que esta acontecndo negando acesso ao roles index
+      //altereção para 404 nao autorizado
+      //public function render($request, Exception $exception)
+    //  {
+       //  if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+//return redirect('/');
+//}
+      
+        //return parent::render($request, $exception);
+   // }
+//}
+      
+
+
+
+
+
+
     /**
      * Render an exception into an HTTP response.
      *

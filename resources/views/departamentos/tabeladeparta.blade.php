@@ -24,6 +24,8 @@
                 <th>ID</th>
                 <th>Nome do Departamento</th>
                 <th>Departamento ID</th>
+                <th>Data Criação</th>
+
                 <th></th>
             </tr>
         </thead>
@@ -33,7 +35,8 @@
                 <td>{{ $d->id }}</td>
                 <td>{{ $d->departamento}}</td>
                 <td>{{ $d->user_id }}</td>
-                <td>{{ $d->departamento_id }}</td>
+                <td class="text-primary">{{ $d->created_at->toFormattedDateString() }}</td>
+
                 <td>
                 <a href="{{ route('atribuir', ['id'=>$d->id]) }}" class="btn btn-danger" style="float: right">Atribuir usuário</a>
                 </td>

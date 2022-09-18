@@ -1,4 +1,4 @@
-<form action="{{ route('saveprot') }}" method="POST" class="form-horizontal" id="formProduto" enctype="multipart/form-data">
+<form action="{{ route('saveprot')}}" method="POST" class="form-horizontal" id="formProduto" enctype="multipart/form-data">
     @csrf
     @method('POST')
     <div class="card">

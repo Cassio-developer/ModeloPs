@@ -28,7 +28,8 @@
 
                     <input type="string" name="cpf" id="cpf" class="form-control @error('cpf') is-invalid @enderror"
                         placeholder="CPF" maxlength="14" data-mask="000.000.000-00">
-
+                     
+                        
                     @error('cpf')
                     <span class="invalid-feedback" role="alert">
                         {{ $message }}
@@ -52,7 +53,7 @@
                     </button>
                 </div>
                 <div class="details">
-                    <p class="register text-center">Já possui conta? <a href="/login">Entrar</a></p>
+                    <p class="register text-center">{{--Já possui conta? <a href="/login">Entrar--}}</a></p>
                 </div>
             </form>
         </div>

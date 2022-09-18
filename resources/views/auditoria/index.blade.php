@@ -1,17 +1,34 @@
 @extends('layouts.master')
 @section('title', 'EXEMPLO')
 @section('content')
+
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+    </head>
+@role('admin')
+   <strong class="alert alert">   Acesso de Admin!!<a></strong>
+
+    
     <div class="conteudo-modal-title text-center">
         <nav class="navbar navbar-light bg-light">
             <a class="navbar-brand"></a>
             <div>
-                <!--input para pesquisar na pagina -->
-                <div class="col-sm-12">
-                    <form action="{{ route('auditoria') }}" method="GET">
-                        {{ csrf_field() }}
-                        <input type="search" class="form-control input-sm" name="search" value="{{ $search }}">
-                        <button type="submit" class="btn btn-primary my-2 my-sm-0-dark" type="search">Pesquisar</button>
-                    </form>
+                 <!--input para pesquisar na pagina -->
+                 <div class="col-sm-12">
+                    <form class="navbar-form">
+                      <div class="input-group no-border">
+                          <input type="text" value="{{ $search }}" class="form-control" placeholder="Pesquisar..." name="search">
+                          <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                            <i class="material-icons">search</i>
+                            <div class="ripple-container"></div>
+                          </button>
+                          </div>
+                        </form>
+ 
                 </div>
         </nav>
         <div class="conteudo-modal-title text-center">
@@ -84,5 +101,9 @@
                 @endif
             </tbody>
         </table>
+@else
+<strong class="alert alert">Você não tem permissões para auditaveis!! Volte a sua area!<a></strong>
 
+@endrole
+    
     @endsection
