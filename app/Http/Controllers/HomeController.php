@@ -35,22 +35,10 @@ class HomeController extends Controller
             $admin = $usersRoles->where('role_id', 1)->count();
            
             $recrutador = $usersRoles->where('role_id', 3)->count();
-          
-          
-
-         
-            return view('admin.home', compact('user', 'admin', 'candidato', 'recrutador', 'adminDemandante', 'secretaria', 'secretario', 'solicitacoes', 'listaEscolaridades'));
-        } else if ($user->hasRole('candidato')) {
-            error_log("teste1555");
-            return view('candidato.home', compact('user', 'formacao', 'profissional', 'cursoExtra', 'candidato','listaEscolaridades','listaCursos', 'listaCidades', 'listaBairros'));
-        } else if ($user->hasRole('recrutador-demandante')) {
-            return view('recrutador-demandante/home', compact('user'));
+        
+            return view('admin.home', compact('user', 'admin'));
         } else if ($user->hasRole('admin-demandante')) {
             return view('admin-demandante/home', compact('user'));
-        } else if ($user->hasRole('secretario')) {
-            return view('secretario/home', compact('user'));
-        } else if ($user->hasRole('rh')) {
-            return view('rh/home', compact('user'));
         } else {
             return view('/welcome');
         }

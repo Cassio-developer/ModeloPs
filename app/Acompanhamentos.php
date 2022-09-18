@@ -12,8 +12,8 @@ class Acompanhamentos extends Model
 
     public function protocolo() {
         return $this->belongsTo(Protos::class, 'protocolo_id');
-    }                          //passando direto o relacionamento
-                            //usar em outras
+    }                         
+    
     public function user() {
         return $this->belongsTo(\App\User::class);
     }

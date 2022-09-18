@@ -4,11 +4,11 @@
         <div class="sidebar-content">
             <ul class="nav nav-primary">
                 <div class="fas fa-sign-out-alt">
-                <img class="avatar" src="{{url('assets/img/default-avatar.png')}}" alt="">
-                {{-- MOSTRA NOME USUARIO LOGADO --}}
-                <a  class="badge badge-success">
-                    Seja bem vindo,  {{Auth::user()->name}}
-                  </a>
+                    <img class="avatar" src="{{ url('assets/img/default-avatar.png') }}" alt="">
+                    {{-- MOSTRA NOME USUARIO LOGADO --}}
+                    <a class="badge badge-success">
+                        Seja bem vindo, {{ Auth::user()->name }}
+                    </a>
                 </div>
 
                 {{-- MOSTRA NOME USUARIO LOGADO --}}
@@ -50,8 +50,8 @@
                             </li>
 
                 </li>
-            
-                
+
+
                 <li class="{{ request()->routeIs('lista') ? 'active' : '' }}">
                     <a href="{{ route('lista') }}">
                         <span class="sub-item">Lista</span>
@@ -74,130 +74,127 @@
             <div class="expandable collapse" id="sidebarLayouts">
                 <ul class="nav nav-collapse">
                     <li class="active'">
-                       
+
 
                         <!--aqui colocamos NOME ROUTES -->
-                <li class="{{ request()->routeIs('tabelaprotocolo') ? 'active' : '' }}">
-                    <a href="{{ route('tabelaprotocolo') }}">
-                        <span class="sub-item">Protocolos</span>
-                    </a>
-                    </a>
-                </li>
-                <!--aqui colocamos NOME ROUTES -->
-                <li class="{{ request()->routeIs('cadastropessoass.index') ? 'active' : '' }}">
-                    <a href="{{ route('cadastropessoass.index') }}">
-                        <span class="sub-item">Cadastrado pessoa</span>
-                    </a>
-                    </a>
-                </li>
-                
-                @role('admin')
-                <!--aqui colocamos NOME ROUTES -->
-                <li class="{{ request()->routeIs('usuarios') ? 'active' : '' }}">
-                    <a href="{{ route('usuarios') }}">
-                        <span class="sub-item">Controle de Usuarios</span>
-                    </a>
-                    </a>
-                </li>
+                    <li class="{{ request()->routeIs('tabelaprotocolo') ? 'active' : '' }}">
+                        <a href="{{ route('tabelaprotocolo') }}">
+                            <span class="sub-item">Protocolos</span>
+                        </a>
+                        </a>
+                    </li>
+                    <!--aqui colocamos NOME ROUTES -->
+                    <li class="{{ request()->routeIs('cadastropessoass.index') ? 'active' : '' }}">
+                        <a href="{{ route('cadastropessoass.index') }}">
+                            <span class="sub-item">Cadastrado pessoa</span>
+                        </a>
+                        </a>
+                    </li>
 
-                @else
-
-@endrole
-                <!--aqui colocamos auditoria -->
-                <li class="{{ request()->routeIs('auditoria') ? 'active' : '' }}">
-                    <a href="{{ route('auditoria') }}">
-                        <span class="sub-item">Auditoria</span>
-                    </a>
-                    </a>
-                </li>
-            </li>
-           
-             
-            
-            <!--aqui colocamos auditoria -->
-            <li class="{{ request()->routeIs('cadastrodepart') ? 'active' : '' }}">
-                <a href="{{ url('cadastrodepart')}}">
-                    <span class="sub-item">Cadastrar novo departamento</span>
-                </a>
-                </a>
-            </li>
+                    @role('admin')
+                        <!--aqui colocamos NOME ROUTES -->
+                        <li class="{{ request()->routeIs('usuarios') ? 'active' : '' }}">
+                            <a href="{{ route('usuarios') }}">
+                                <span class="sub-item">Controle de Usuarios</span>
+                            </a>
+                            </a>
+                        </li>
+                    @else
+                    @endrole
+                    <!--aqui colocamos auditoria -->
+                    <li class="{{ request()->routeIs('auditoria') ? 'active' : '' }}">
+                        <a href="{{ route('auditoria') }}">
+                            <span class="sub-item">Auditoria</span>
+                        </a>
+                        </a>
+                    </li>
         </li>
-        
+
+
+
+        <!--aqui colocamos auditoria -->
+        <li class="{{ request()->routeIs('cadastrodepart') ? 'active' : '' }}">
+            <a href="{{ url('cadastrodepart') }}">
+                <span class="sub-item">Cadastrar novo departamento</span>
+            </a>
+            </a>
+        </li>
+        </li>
+
         <!--aqui colocamos auditoria -->
         <li class="{{ request()->routeIs('tabeladepart') ? 'active' : '' }}">
-            <a href="{{ url('tabeladepart')}}">
+            <a href="{{ url('tabeladepart') }}">
                 <span class="sub-item">Lista de Departamento</span>
             </a>
             </a>
-        </li><!--somente a estes usuarios sera visivel -->
-       
-@role('admin')
+        </li>
+        <!--somente a estes usuarios sera visivel -->
 
-        <!--Acesso permitido! -->
-         <!--aqui colocamos auditoria -->
-         <li class="{{ request()->routeIs('users/*') ? 'active' : '' }}">
-            <a href="{{route('users.index')}}">
-                <span class="sub-item">Administração</span>
-            </a>
-            </a>
-        </li><!--Acesso permitido! -->
-       
-        
-         <!--aqui colocamos auditoria -->
-         <li class="{{ request()->routeIs('users/*') ? 'active' : '' }}">
-            <a href="{{route('roles.index')}}">
-                <span class="sub-item">Administração Permissões</span>
-            </a>
-            </a>
-        </li>
-         <!--aqui colocamos auditoria -->
-         <li class="{{ request()->routeIs('users/*') ? 'active' : '' }}">
-            <a href="{{url('register')}}">
-                <span class="sub-item">Criar usuario</span>
-            </a>
-            </a>
-        </li>
-      
-@else
+        @role('admin')
+            <!--Acesso permitido! -->
+            <!--aqui colocamos auditoria -->
+            <li class="{{ request()->routeIs('users/*') ? 'active' : '' }}">
+                <a href="{{ route('users.index') }}">
+                    <span class="sub-item">Administração</span>
+                </a>
+                </a>
+            </li>
+            <!--Acesso permitido! -->
 
-@endrole
-      
-            </div>
-        </li>
-        <li class="nav-item">
-            <a data-toggle="collapse" href="#sidebarLayouts2">
-                <i class="fas fa-bed" actived></i>
-                <p>Opção 3</p>
-                <span class="caret"></span>
-            </a>
-            <div class="expandable collapse" id="sidebarLayouts2">
-                <ul class="nav nav-collapse">
-                    <li class="">
-                        <a href="#">
-                            <span class="sub-item">Página 1</span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="#">
-                            <span class="sub-item">Página 2</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a data-toggle="collapse" href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-                <i class="fas fa-sign-out-alt"></i>
-                <p>Sair</p>
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-        </li>
-        </ul>
+
+            <!--aqui colocamos auditoria -->
+            <li class="{{ request()->routeIs('users/*') ? 'active' : '' }}">
+                <a href="{{ route('roles.index') }}">
+                    <span class="sub-item">Administração Permissões</span>
+                </a>
+                </a>
+            </li>
+            <!--aqui colocamos auditoria -->
+            <li class="{{ request()->routeIs('users/*') ? 'active' : '' }}">
+                <a href="{{ url('register') }}">
+                    <span class="sub-item">Criar usuario</span>
+                </a>
+                </a>
+            </li>
+        @else
+        @endrole
+
     </div>
+    </li>
+    <li class="nav-item">
+        <a data-toggle="collapse" href="#sidebarLayouts2">
+            <i class="fas fa-bed" actived></i>
+            <p>Opção 3</p>
+            <span class="caret"></span>
+        </a>
+        <div class="expandable collapse" id="sidebarLayouts2">
+            <ul class="nav nav-collapse">
+                <li class="">
+                    <a href="#">
+                        <span class="sub-item">Página 1</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#">
+                        <span class="sub-item">Página 2</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a data-toggle="collapse" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+            <i class="fas fa-sign-out-alt"></i>
+            <p>Sair</p>
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+    </li>
+    </ul>
+</div>
 </div>
 </div>
 

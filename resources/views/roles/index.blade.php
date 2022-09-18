@@ -41,7 +41,7 @@
                         <th> Guard </th>
                         <th> Data da Criação </th>
                     </tr>
-                </thead>   
+                </thead>
                 <tbody>
                     @foreach ($roles as $key => $role)
                         <tr>
@@ -58,15 +58,15 @@
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger" type="submit" rel="tooltip">
-                                              <i class="material-icons">Deletar</i>
+                                                <i class="material-icons">Deletar</i>
                                             </button>
-                                         
-                                        <a href="{{ route('roles.show', $role->id) }}" class="btn btn-primary"><i
-                                            class="material-icons">Ver</i></a>
-            
 
-                                        <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary"><i
-                                            class="material-icons">edit</i></a>
+                                            <a href="{{ route('roles.show', $role->id) }}" class="btn btn-primary"><i
+                                                    class="material-icons">Ver</i></a>
+
+
+                                            <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary"><i
+                                                    class="material-icons">edit</i></a>
                             </td>
                         </tr>
                     @endforeach

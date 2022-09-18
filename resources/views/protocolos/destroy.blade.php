@@ -14,7 +14,7 @@
                         <div>
                             <div class="form-group col-md-3">
                                 <label for="cadastropessoass_id" class="control-label">Pessoa</label>
-                                <select name="cadastropessoass_id" class="form-control" style="width:250px" 
+                                <select name="cadastropessoass_id" class="form-control" style="width:250px"
                                     id="cadastropessoass_id">
                                     @foreach ($pessoa as $pessoa)
                                         <option value="{{ $pessoa->id }}"

@@ -1,35 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-use PDF;//usar pdf aqui relatorio
-use App\Cadastropessoass;  //CUIDAR COLOQUEI O MODEL EM CIMA NAMESPACE DEU ERRO!!
+use PDF;
+use App\Cadastropessoass; 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdateUserFormRequest;
 use Illuminate\Support\Facades\Validator;
 
 class CadastropessoassController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
-    {          
-        $sexo=[
-            '1' => 'masculino',
-            '2' => 'feminino',
-        ];
+    {   
 
-
-          //variavel botão  
         $search = request('search');
-      //  if($search){
-// variaveis que serão procuradas               //coluna  //metodo //oquebuscar
-        $cadastropessoass = Cadastropessoass::where('nome', 'LIKE', '%' . $search . '%')
-       
-                            //nome Controller
-               //aqui vamos realizar a busca do campo de pesquisa index             
+        $cadastropessoass = Cadastropessoass::where('nome', 'LIKE', '%' . $search . '%')         
             ->orWhere('endereco', 'LIKE', '%' . $search . '%')
             ->orWhere('cidade', 'LIKE', '%' . $search . '%')
             ->orWhere('telefone', 'LIKE', '%' . $search . '%')
@@ -39,27 +24,12 @@ class CadastropessoassController extends Controller
             ->orWhere('sexo', 'LIKE', '%' . $search . '%')
             ->orWhere('datanascimento', 'LIKE', '%' . $search . '%')
             ->orWhere('complemento', 'LIKE', '%' . $search . '%')->get();
-           
-        // cuidar a paginação default 10   
-        //paginação!
-        //$cadastropessoass = Cadastropessoass::paginate(12);
-   // }else {
-    //    $cadastropessoass = Cadastropessoass::all();
-    //}        
-
-
-        
-               
-               return view('cadastropessoasspasta.index',(['cadastropessoass','search'=>$search,"cadastropessoass"=>$cadastropessoass,'sexo' =>$sexo]));
-        }                   //aqui colocar pasta.index      //compact variavel nome table
-                               //cuidar !!!                     
+       
+               return view('cadastropessoasspasta.index',(['cadastropessoass','search'=>$search,"cadastropessoass"=>$cadastropessoass]));
+        }                                    
        
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {        
         
@@ -70,15 +40,9 @@ class CadastropessoassController extends Controller
     return view('cadastropessoasspasta.create', [('cadastropessoass.store'), 'method'=>'post']);
 }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreUpdateUserFormRequest $request )
 {
-    //  
+    
     
     $this->validate($request, [
         
@@ -106,9 +70,6 @@ class CadastropessoassController extends Controller
             ->withInput();
     }
 
-   
-    
-    
     $url = $request->get('redirect_to', route('cadastropessoass.index'));
     if (! $request->has('cancel') ){
         $dados = $request->all();
@@ -124,35 +85,19 @@ class CadastropessoassController extends Controller
 
        return redirect('/cadastropessoass')->with('success', 'Protocolo cadastrado com sucesso!');
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */            //aqui vai nome model Cadastropessoass
+    
     public function update(Cadastropessoass $cadastropessoass, StoreUpdateUserFormRequest $request)
     {
         if (! $request->has('cancel') ){
@@ -176,19 +121,12 @@ class CadastropessoassController extends Controller
         return redirect()->to(session()->pull('redirect_to'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
 
     public function destroy(Cadastropessoass $cadastropessoass, Request $request)
-    {                                        //passar aqui partametro delete da route exibido php artisan route:list
-        //
+    {                                       
         if (! $request->has('cancel') ){
             $cadastropessoass->delete();
-            //passar aqui partametro delete da route exibido php artisan route:list $cadastropessoass
             \Session::flash('message', 'Cadastro  excluído com sucesso !');
         }
         else
@@ -196,5 +134,5 @@ class CadastropessoassController extends Controller
             $request->session()->flash('message', 'Operação cancelada pelo usuário'); 
         }
         return redirect()->to(session()->pull('redirect_to')); 
-    }                            //pasta
+     }                          
 }

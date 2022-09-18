@@ -54,15 +54,12 @@ class DepartamentoController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('tabeladepart') //retorno para tabela departamento
+            return redirect('tabeladepart') 
                 ->withErrors($validator)
                 ->withInput();
         }
 
         $departamento->save();
-
-
-                   //retorno tabela departamento
         return redirect('/tabeladepart')->with('success', 'Departamento cadastrado com sucesso!');
     }
 
@@ -94,8 +91,7 @@ class DepartamentoController extends Controller
         $usuario_id = $request->input('user_id');
         $usuario = User::find($usuario_id);
         $usuario->save();
-        //$limit = Departamento_user::where('user_id', $departamento->user_id)
-        //->where('departamento_id', $departamento->id)->exists();
+    
         $limit = $departamento->user()->where('user_id', $usuario_id)->exists();
         error_log('teste' . $limit);
         if ($limit) {
@@ -104,7 +100,7 @@ class DepartamentoController extends Controller
         } else {
             $departamento->user()->attach($usuario);
             return redirect()->back();
-            //anilizar porque napo esta salvando
+        
             return redirect('/tabeladepartamento')->with('success', 'Usuario atribuido cadastrado com sucesso!');
         }
     }

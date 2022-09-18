@@ -10,8 +10,5 @@ class arquivos extends Model
         'arquivo',
          'protoss_id',
     ];
-       
-        
-    
     
 }

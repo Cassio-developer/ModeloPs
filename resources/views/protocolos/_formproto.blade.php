@@ -1,4 +1,4 @@
-<form action="{{ route('saveprot')}}" method="POST" class="form-horizontal" id="formProduto" enctype="multipart/form-data">
+<form action="{{ route('saveprot') }}" method="POST" class="form-horizontal" id="formProduto" enctype="multipart/form-data">
     @csrf
     @method('POST')
     <div class="card">
@@ -13,13 +13,10 @@
             <input type="hidden" id="id" class="form-control">
 
 
-            <!--  CAMPO numero de ptotocolo -->
             <div class="form-group">
                 <label class="col-md-6 control-label">Escolha Nome Demandante</label>
                 <div class="col-md-6">
-                    <!--  name="pessoa" colocar depois, coloquei par fazer teste pois deu erro sql -->
 
-                    <!--  aqui vai o select -->
                     </select>
                     <div class="form-group col-md-3">
                         <label for="cadastropessoass_id" class="control-label">Pessoa</label>
@@ -53,7 +50,6 @@
                     </div>
 
                     {{-- - Formulario DataRequisição - --}}
-
                     <div class="form-group">
                         <label for="DataRequisicao" class="control-label">Data desta Requisição</label>
                         <div class="col-md-8">
@@ -77,23 +73,22 @@
                                     <div class="alert alert-danger">{{ $message }}
                                     @enderror
                                 </div>
-                                
+
                                 <div class="form-group">
-                                <select required="required" style="background-color: #white" class="form-control"  name="departamento_id" id="departamento_id">
-                                    <option  value="">Selecione uma departamento</option>    
-                                    @foreach ($departamento as $dep)
-                                    <option  value="{{ $dep->id }}"> 
-                                    {{ $dep->departamento }}
-                                    </option>
-                                    @endforeach
-                                </select> 
-                            </div>
-                <div class="form-group">
-                    <input type="file" name="arquivo[]" class="custom-file-unput" id="arquivo" multiple >
-                   
-                    
-                </div>
-              
+                                    <select required="required" style="background-color: #white" class="form-control"
+                                        name="departamento_id" id="departamento_id">
+                                        <option value="">Selecione uma departamento</option>
+                                        @foreach ($departamento as $dep)
+                                            <option value="{{ $dep->id }}">
+                                                {{ $dep->departamento }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="file" name="arquivo[]" class="custom-file-unput" id="arquivo"
+                                        multiple>
+                                </div>
 </form>
 </div>
 </div>

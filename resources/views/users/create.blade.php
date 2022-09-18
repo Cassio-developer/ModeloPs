@@ -7,18 +7,18 @@
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
     <div class="container-fluid no-padding table-responsive-sm">
-            <div class="conteudo-modal-title text-center">
-                <h2>Criar novo Usuario</h2>
-            </div>
-
+        <div class="conteudo-modal-title text-center">
+            <h2>Criar novo Usuario</h2>
         </div>
-                    <div>
-                        
-                    </div>
-                    <div class="pull-right">
-                        <a class="btn btn-primary" href="{{ route('users.index') }}"> Voltar</a>
-                    </div>
-            </div>
+
+    </div>
+    <div>
+
+    </div>
+    <div class="pull-right">
+        <a class="btn btn-primary" href="{{ route('users.index') }}"> Voltar</a>
+    </div>
+    </div>
     </div>
     @if (count($errors) > 0)
         <div class="alert alert-danger">
@@ -101,16 +101,14 @@
 
                     </div>
                 </div>
-            </div>
-
-        
-                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
         </div>
 
         </div>
-   
+
 
         <script type="text/javascript" src="{{ url('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
 

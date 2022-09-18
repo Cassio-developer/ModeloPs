@@ -1,30 +1,15 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 use App\Http\Controllers\RegistroController;
 use Illuminate\Database\Eloquent\Collection;
 
-                                      //function é função de callback com retorno
+                             
 Route::group(['middleware' => 'web'], function(){
     Route::get('/', 'HomeController@index')->middleware('auth');
     Auth::routes();
-    //com esta route abaixo funcionou direto pagina de login!!
-    //Route::post('/login',['users'=>'loginController@checkLogin','as' => 'VerificarLogin']);
+ 
     Route::get('/welcome', 'HomeController@index')->name('welcome')->middleware('auth');
-    //Route::get('/', function () {
-        //return view('home');//rota antes welcome
-   // });
-    
-    
+   
     Route::get('/cadastro', function () {
         return view('cadastro');
     })->name('cadastro')->middleware('auth');
@@ -43,37 +28,11 @@ Route::group(['middleware' => 'web'], function(){
         return view('tabela', compact('cadastros'));
     })->name('lista')->middleware('auth');
     
-   // Route::get('/pdf', function () {
-      //  $collection = collect([
-         //   ['id' => 1, 'name' => 'John', 'surname' => 'Constantine', 'age' => 45],
-          //  ['id' => 2, 'name' => 'Jane', 'surname' => 'Tarzan', 'age' => 33],
-          //  ['id' => 3, 'name' => 'James', 'surname' => 'Hetfield', 'age' => 56],
-          //  ['id' => 4, 'name' => 'Pablo', 'surname' => 'Picasso', 'age' => 91],
-          //  ['id' => 5, 'name' => 'Elton', 'surname' => 'John', 'age' => 72],
-      //  ]);
-       // $cadastros = json_decode(json_encode($collection));
-      //  $pdf = \PDF::loadView('pdf', compact('cadastros'));
-       // return $pdf->stream('exemplo.pdf');
-   // })->name('pdf')->middleware('auth');
-    
-   // Auth::routes();
     
     Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
     
-    //testes de input de search!! continuar os testes
-    //Route::get('/equipamento/delete/{equipamento}', function (App\Equipamentoteste $equipamento) {
-     //   return view('protocolos.destroy', ['eqp1' => $equipamento]);
-   // })->name('equipamento.delete')->middleware('auth');
-    //Route::get('/equipamento/edit/{equipamento}', function (App\Equipamentoteste $equipamento) {
-       // return view('protocolos.edit', ['eqp1' => $equipamento]);
-    //})->name('equipamento.edit')->middleware('auth');
-    
-    //Route::get('/equipamento', 'EquipamentostesteController@index')->name('index');
-    //rota de teste
-    //Route::resource('/equipamento', 'EquipamentostesteController')->except([
-       // 'show', 'edit'
 
-        Route::get('/tabelaprotocolo', 'ProtosController@indextabelaprotoco')->name('tabelaprotocolo')->middleware('auth');
+    Route::get('/tabelaprotocolo', 'ProtosController@indextabelaprotoco')->name('tabelaprotocolo')->middleware('auth');
 
     Route::get('/registrar', 'ProtosController@registrarcadastro')->name('registrar')->middleware('auth');
 
@@ -91,28 +50,27 @@ Route::group(['middleware' => 'web'], function(){
     Route::get('/deleteprot/{id}',  'ProtosController@deletandoprotocolo')->name('deleteprot')->middleware('auth');
 
 
-    //nova rota para cadastro de pessoas
     Route::resource('/cadastropessoass', 'CadastropessoassController')->except([
         'show', 'edit'
-    ])->middleware('auth');                      //este parametro verficar no php artisa route:list {cadastropessoass}
+    ])->middleware('auth');                     
     Route::get('/cadastropessoass/delete/{cadastropessoass}', function (App\Cadastropessoass $cadastropessoass) {
         if(!session()->has('redirect_to'))
         {
             session(['redirect_to' => url()->previous()]);
         }
         return view('cadastropessoasspasta.destroy', ['eqp' => $cadastropessoass]);
-        //nome da pasta
-    })->name('cadastropessoass.delete')->middleware('auth');                                           //passei aqui mesmo nome
-    //nome da rota.arquivo
+        
+    })->name('cadastropessoass.delete')->middleware('auth');                                          
+   
     Route::get('/cadastropessoass/edit/{cadastropessoass}', function (App\Cadastropessoass $cadastropessoass) {
         if(!session()->has('redirect_to'))
         {
             session(['redirect_to' => url()->previous()]);
         }
         return view('cadastropessoasspasta.edit', ['eqp' => $cadastropessoass]);
-        //nome da pasta
-    })->name('cadastropessoass.edit')->middleware('auth');        //acionado pelo botao eqp
-              //nome da rota.arquivo
+      
+    })->name('cadastropessoass.edit')->middleware('auth');       
+             
 });
 
 
@@ -122,7 +80,7 @@ Route::post('/usuarios/add', 'UsuariosController@add')->name('add')->middleware(
 Route::get('/usuarios/{id}/edit', 'UsuariosController@edit')->name('edit')->middleware('auth');
 Route::delete('/usuarios/delete/{id}', 'UsuariosController@delete')->middleware('auth');
 Route::post('/usuarios/update/{id}', 'UsuariosController@update')->name('update')->middleware('auth');
-//auditoria
+
 Route::get('/auditoria', 'AuditoriaController@index')->name('auditoria')->middleware('auth');
 Route::get('/auditoria/{id}/detalhamento', 'AuditoriaController@detalhamento')->name('detalhamento')->middleware('auth');
 
@@ -130,22 +88,6 @@ Route::get('/auditoria/{id}/detalhamento', 'AuditoriaController@detalhamento')->
 Route::get('/pdf', 'ProtosController@pdf')->name('pdfId')->middleware('auth');
 Route::get('/pdfunico/{id}', 'ProtosController@pdfunico')->name('unicopdf')->middleware('auth');
 Route::post('/upload', 'ProtosController@upload')->name('upload')->middleware('auth');
-
-
-//Route::get('auth/login', 'Auth\LoginController@getLogin')->name('login');
-//Route::post('auth/login', 'Auth\LoginController@postLogin')->name('login');
-//Route::get('auth/logout', 'Auth\LoginController@getLogout')->name('login');
-
-// Registration routes...
-//Route::get('auth/register', 'Auth\RegisterController@index')->name('register');
-//Route::post('auth/register', 'Auth\RegisterController@create')->name('register');
-//Auth::routes();
-
-
-//Route::get('/home', 'HomeController@index')->name('home');
-
-//Auth::routes();
-//Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/cadastrodepart', 'DepartamentoController@indexdepartamento')->middleware('auth');
@@ -158,22 +100,8 @@ Route::get('tabeladepart/atribuir/{id}', 'DepartamentoController@atribuirusuario
 
 Route::post('saveatribuir/{id}', 'DepartamentoController@savandoatribuicao')->name('atribuirsalvando')->middleware('auth');
 
-//Route::group([
-  //  'middleware' => ['middleware' => 'web'],
-//], function () {
-
-  //  Route::get('/dashboard', 'AdministradorController@index')->name('dashboard');
-
-   // Route::get('/users/create', 'AdministradorController@createUsers')->name('users.create');
-
-   // Route::post('/users/store', 'AdministradorController@storeUsers')->name('users.store');
-//});
 Route::get('/', 'HomeController@index')->middleware('auth');
-//Route::get('/home', [HomeController::class, 'index'])->name('home');
-  
-//Route::group(['middleware' => ['auth']], function() {
-  //  Route::resource('roles', RoleController::class);
-   // Route::resource('users', UserController::class);
+
 
 //});
 //Route::group(['middleware' => ['auth', 'auth.admin'], function () {

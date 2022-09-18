@@ -20,12 +20,12 @@ class Protos extends Model implements Auditable
         'cadastropessoass_id',
         'departamento_id'
     ];   
-    // seria para datas
+    
     protected $dates = [
         'DataRequisicao',
     ];
-             //função relaciona pessoa com cadastro
-    public function cadastropessoass() {        //nome model!
+            
+    public function cadastropessoass() {       
         return $this->belongsTo(\App\Cadastropessoass::class);
 
     }

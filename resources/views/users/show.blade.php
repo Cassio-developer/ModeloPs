@@ -31,18 +31,18 @@
             </thead>
             <tr>
                 <br>
-                 <br>
-                 <td>{{ $user->id }}
+                <br>
+                <td>{{ $user->id }}
                 <td> {{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td> {{ $user->created_at }}</td>
-              
-                <td> 
-                    @if(!empty($user->getRoleNames()))
-                    @foreach($user->getRoleNames() as $v)
-                       <label class="badge badge-success">{{ $v }}</label>
-                    @endforeach
-                  @endif
+
+                <td>
+                    @if (!empty($user->getRoleNames()))
+                        @foreach ($user->getRoleNames() as $v)
+                            <label class="badge badge-success">{{ $v }}</label>
+                        @endforeach
+                    @endif
                 </td>
                 <td>
                 <td>

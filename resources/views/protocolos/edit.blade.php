@@ -5,7 +5,6 @@
         <div class="card-header">
             <div class="container col-11">
                 <h3>Editar Protocolos</h3>
-                <!-- rota-->
                 <form action={{ route('alterar_protocolo', ['id' => $protocolo]) }} method="post">
                     @csrf
                     @method('POST')
@@ -15,10 +14,8 @@
                             <label for="cadastropessoass_id" class="control-label">Pessoa</label>
                             <input type="text" class="form-control" name="cadastropessoass_id" id="cadastropessoass_id"
                                 value=" {{ $protocolo->cadastropessoass->nome }} " readonly>
-                            <!--  readonly é igual ao required-->
                         </div>
                     </div>
-                    <!--  CAMPO  descrição do Protocolo-->
                     <div class="form-group">
                         <label class="col-md-6 control-label">Digite descrição do Protocolo</label>
                         <div class="col-md-12">

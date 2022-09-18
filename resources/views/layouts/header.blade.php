@@ -10,18 +10,18 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap&subset=latin-ext" rel="stylesheet">
 
     <!-- Fonts and icons -->
-    <script src="{{url('assets/js/core/jquery.3.2.1.min.js')}}"></script>
+    <script src="{{ url('assets/js/core/jquery.3.2.1.min.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <script src="{{url('assets/js/plugin/webfont/webfont.min.js')}}"></script>
+    <script src="{{ url('assets/js/plugin/webfont/webfont.min.js') }}"></script>
 
     <!-- CSS Files -->
-    <link rel="stylesheet" href="{{url('assets/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{url('css/styles.css')}}">
-    <link rel="stylesheet" href="{{url('css/style.css')}}">
-    <link rel="stylesheet" href="{{url('css/__codepen_io_andytran_pen.css')}}">
-    <link rel="stylesheet" href="{{url('assets/css/atlantis.min.css')}}">
-    <link rel="stylesheet" href="{{url('assets/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
-    <link rel="stylesheet" href="{{url('assets/css/fonts.min.css')}}">
+    <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url('css/style.css') }}">
+    <link rel="stylesheet" href="{{ url('css/__codepen_io_andytran_pen.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/css/atlantis.min.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/fonts/material-icon/css/material-design-iconic-font.min.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/css/fonts.min.css') }}">
 
     <!-- DataPicker -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css"
