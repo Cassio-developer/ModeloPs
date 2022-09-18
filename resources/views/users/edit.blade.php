@@ -1,11 +1,11 @@
 @extends('layouts.master')
 @section('title', 'EXEMPLO')
 @section('content')
-
+<div class="card-body">
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Edit novo usuario</h2>
+                <h2>Editar novo usuario</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('users.index') }}"> voltar</a>
@@ -48,8 +48,7 @@
                 </select>
 
             </div>
-        </div>
-        </div>
+     
 
         <input type="email" class="form-control" name="email" value="{{ old('email', $user->email) }}"
             class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"
@@ -93,6 +92,7 @@
             <button type="submit" class="btn btn-primary">enviar</button>
         </div>
         </div>
+    </div>
 
 
 
