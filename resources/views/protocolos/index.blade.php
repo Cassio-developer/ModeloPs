@@ -97,7 +97,7 @@
                         <td>{{ $protos->cadastropessoass->nome }}</td>
                         <td>{{ $protos->prazo }}</td>
                         <td>{{ $protos->descricao }}</td>
-                        <td>{{ $protos->DataRequisicao }}</td>
+                        <td class="text-primary">{{ $protos->created_at->toFormattedDateString() }}</td>
                         <td>{{ $protos->departamento_id }}</td>
                         <td>{{ $protos->departamento->departamento }}</td>
                         <td>

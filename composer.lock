@@ -324,7 +324,10 @@
                     "Dompdf\\": "src/"
                 },
                 "classmap": [
-                    "lib/"
+                    "lib/",
+                    "database/migrations",
+        "database/seeds",
+        "app/Database/Seeds"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",

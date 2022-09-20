@@ -66,8 +66,20 @@ class DepartamentoController extends Controller
     public function tabeladepartamento()
     {
 
+
+        
+          // $usuario = User::find($usuario_id);
+        //$usuario_id = $request->input('user_id');
+        //  $usuario = User::find($id);
+          //$pessoa = Cadastropessoass::all();
+          $id = request()->route()->parameter('id');
+          $departamento = Departamento::find($id);
+          $user = User::all();
         $user = User::all();
         $departamento = Departamento::all();
+        $departamento = Departamento::paginate(15);
+
+
         return view('departamentos/tabeladeparta', compact('departamento', $departamento, 'user', $user));
     }
 
@@ -103,5 +115,7 @@ class DepartamentoController extends Controller
         
             return redirect('/tabeladepartamento')->with('success', 'Usuario atribuido cadastrado com sucesso!');
         }
+
+        
     }
 }

@@ -37,14 +37,47 @@ header nav div.span {
     justify-content: flex-start;
     width: 100%;
 }
-
+/* animação do letreiro cassio projeto*/
 header nav span {
     font-size: 2rem;
-    color: white;
-    letter-spacing: 1px;
+    color: rgb(245, 231, 231);
+    letter-spacing: 2px;
     font-weight: bold;
-    padding-right: 20px;
+    padding-right: 15px;
+        font-size: 50px;
+        white-space: nowrap;
+        overflow: hidden;
+        animation: typewriter 7s steps(13) infinite alternate,
+          blink 800ms steps(13) infinite normal;
+        border-right: 2px solid black;
+        box-sizing: border-box;
+        outline: none;
+        align-items: center;
+    justify-content: center;
+    text-align: center;
+        display: flex;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        outline: none;
+        font-family: "Roboto", sans-serif;
+}/* animação do letreiro cassio projeto*/
+@keyframes typewriter {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 90%;
+  }
 }
+@keyframes blink {
+  from {
+    border-color: black;
+  }
+  to {
+    border-color: transparent;
+  }
+}/* animação do letreiro cassio projeto*/
 
 header nav img {
     height: auto;
@@ -57,31 +90,61 @@ header nav img {
 main {
     flex: 5;
     background: #f9fbfd;
+    /*opacity : 0.5;*/
+    border: 5px solid rgba(0, 0, 0, 0.125);
+    animation: changeBackgroundColor 7s infinite; /* propriedade de animação */
 }
 
+@keyframes changeBackgroundColor {
+  0% {
+    background-color: #969799;
+  }
+  25% {
+    background-color: #a3a0a0;
+  }
+  
+  50% {
+    background-color: #797878;
+  }
+  75% {
+    background-color: #979595;
+  }
+  100% {
+    background-color: #a6a8a8;
+  }
+}/* propriedade animação */
+
+
+
 main div.container {
+  width: 100%;
+  height: 100%;
     display: flex;
     height: 100%;
     justify-content: center;
     align-items: center;
-}
 
+}
+/* card login cassio  */
 div.container .card {
     min-height: 391px;
     max-height: 100%;
-    width: 700px;
+    width: 400px;
     margin: 3rem 0;
-    background: #fff;
-    border-radius: 8px;
+    background: rgb(180, 176, 176);
+    border-radius: 15px;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25) !important;
     border: 1px solid rgba(0, 0, 0, 0.125);
+    /* opacity : 0.5; deixa transparente */
+    animation: changeBackgroundColor 7s infinite; /* propriedade de animação */
+
 }
 
 .card .card-header {
     text-align: center;
     font-size: 1.8rem;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 50px;
+    padding-bottom: 30px;
     border-bottom: 1px solid #cdced1;
 }
 
@@ -185,7 +248,7 @@ div.details p {
 footer {
     flex: 0.5;
     background: rgb(13, 71, 161);
-    min-height: 53px;
+    min-height: 60px;
 }
 
 footer div {

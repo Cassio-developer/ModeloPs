@@ -107,6 +107,7 @@ protected function create(array $data)
         'name' => $data['name'],
         'email' => $data['email'],
         'cpf' => $data['cpf'],
+        'role' => $data['role'],
         'password' => Hash::make($data['password']),
     ]);
 }

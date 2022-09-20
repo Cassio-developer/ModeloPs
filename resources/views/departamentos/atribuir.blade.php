@@ -66,42 +66,5 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
-    <script>
-        $(document).ready(function() {
-            $('#exemplo').DataTable({
-                select: false,
-                responsive: true,
-                "order": [
-                    [0, "asc"]
-                ],
-                "info": false,
-                "sLengthMenu": false,
-                "bLengthChange": false,
-                "oLanguage": {
-
-                    "sEmptyTable": "Nenhum registro encontrado",
-                    "sInfo": "Mostrando de START até END de TOTAL registros",
-                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-                    "sInfoFiltered": "(Filtrados de MAX registros)",
-                    "sInfoPostFix": "",
-                    "sInfoThousands": ".",
-                    "sLengthMenu": "MENU resultados por página",
-                    "sLoadingRecords": "Carregando...",
-                    "sProcessing": "Processando...",
-                    "sZeroRecords": "Nenhum registro encontrado",
-
-                    "oPaginate": {
-                        "sNext": "Próximo",
-                        "sPrevious": "Anterior",
-                        "sFirst": "Primeiro",
-                        "sLast": "Último"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Ordenar colunas de forma ascendente",
-                        "sSortDescending": ": Ordenar colunas de forma descendente"
-                    }
-                }
-            });
-        });
-    </script>
+    
 @endsection

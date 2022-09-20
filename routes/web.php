@@ -97,6 +97,8 @@ Route::post('/storedepart', 'DepartamentoController@storedepartamento')->name('s
 Route::get('/tabeladepart', 'DepartamentoController@tabeladepartamento')->name('tabeladepart')->middleware('auth');
 
 Route::get('tabeladepart/atribuir/{id}', 'DepartamentoController@atribuirusuario')->name('atribuir')->middleware('auth');
+Route::delete('/tabeladepart', 'DepartamentoController@delete')->name('delete')->middleware('auth');
+
 
 Route::post('saveatribuir/{id}', 'DepartamentoController@savandoatribuicao')->name('atribuirsalvando')->middleware('auth');
 

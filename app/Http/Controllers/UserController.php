@@ -8,21 +8,23 @@ use App\User;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreUpdateUserCreateFormRequest;
 
 use Illuminate\Support\Arr;
-//use App\Http\Middleware\AdminCheck;
+use App\Http\Middleware\AdminCheck;
 
 class UserController extends Controller
 {
 
 
- //   function __construct()
-   // {
+   function __construct()
+   {
          
-       //  $this->middleware(AdminCheck::class);
+        $this->middleware(AdminCheck::class);
 
-        //}
+        }
                  ///verificar se coloco middleware que criei ele barra
 
 
@@ -38,17 +40,58 @@ class UserController extends Controller
     {    
       
         $roles = Role::all()->pluck('name', 'id');
+
+       
+     
+
+
         return view('users.create', compact('roles'));
     }
     
 
-    public function store(Request $request)
+    public function store(StoreUpdateUserCreateFormRequest  $request)
     {
+       
        
         $user = User::create($request->only('name', 'username', 'email','cpf','role')
             + [
                 'password' => bcrypt($request->input('password')),
             ]);
+            
+
+            $validator = Validator::make($request->all(), [
+                'name' => ['required', 'string', 'max:255'],
+                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                    'password' => ['required', 'string', 'min:8', 'confirmed'],
+                    'cpf' => ['required', 'string', 'cpf', 'unique:users'],
+    
+            ], [
+                'name.required' => 'Nome é obrigatório',
+                'name.string' => 'Somente letras',
+                'name.max' => 'Máximo 255 caracteres',
+                'email.required' => 'Email é obrigatório',
+                'email.email' => 'Formato errado',
+                'email.max' => 'Máximo 255 caracteres',
+            
+                'email.unique' => 'E-mail já cadastrado',
+                'cpf.required' => 'CPF é obrigatório',
+                'cpf.max' => 'Máximo 14 numeros',
+                'cpf.unique' => 'CPF já cadastrado',
+                'cpf.cpf' => 'CPF inválido',
+                'password.required' => 'Senha é obrigatório',
+                'password.min' => 'Minimo 8 caracteres',
+                'password.confirmed' => 'Senhas precisam ser iguais',
+    
+            ]);
+    
+            if ($validator->fails()) {
+                return redirect('users') 
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+
+
 
         $roles = $request->input('role', []);
         $user->syncRoles($roles);
@@ -71,12 +114,14 @@ class UserController extends Controller
     {   
        
         $user = Auth::user();
-        $roles = Role::all()->pluck('name', 'id');
+        //$roles = Role::all()->pluck('name', 'id');
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
         $roles = $request->input('roles', []);
         $user->syncRoles($roles);
+        $roles = Role::all()->pluck('name', 'id');
+        $user->load('roles');
         return view('users.edit',compact('user','roles','userRole'));
     }
     
@@ -88,7 +133,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
             'cpf' => 'required|string|max:50|min:3',
-            'role' => 'required'
+            //'role' => 'required'
         ]);
     
         $input = $request->all();

@@ -2,6 +2,7 @@
 @include('layouts.navbar')
 @include('layouts.sidebar')
 <main>
+    
     @include('layouts.main')
 </main>
 

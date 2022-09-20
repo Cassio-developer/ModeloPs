@@ -32,6 +32,7 @@
 </head>
 
 <body>
+    
     @if (Session::has('message'))
         <div class="alert alert-sucess alert-dismissible show" role="alert">
             <strong> {!! session()->get('message') !!}</strong>
@@ -55,7 +56,10 @@
         </nav>
     </header>
     <main class="main">
+        <div class="wrapper wrapper-full-page">
+        <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('{{ asset('assets/img/São-Leopoldo-Intendência-Municipal.jpg') }}'); background-size: cover; background-position: top center;align-items: center; position: relative; height: 100vh ;width: 100vw; margin: 0;" data-color="rose">
         @yield('content')
+        </div>
     </main>
 
     <footer>

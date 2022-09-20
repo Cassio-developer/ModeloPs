@@ -24,9 +24,8 @@
                 <tr>
                     <th>ID</th>
                     <th>Nome do Departamento</th>
-                    <th>Departamento ID</th>
                     <th>Data Criação</th>
-
+                    <th>Usuario Acompanhamento</th>
                     <th></th>
                 </tr>
             </thead>
@@ -35,9 +34,8 @@
                     <tr>
                         <td>{{ $d->id }}</td>
                         <td>{{ $d->departamento }}</td>
-                        <td>{{ $d->user_id }}</td>
                         <td class="text-primary">{{ $d->created_at->toFormattedDateString() }}</td>
-
+                        <td>{{ App\User::whereId($d->id)->pluck('name')}}</td>
                         <td>
                             <a href="{{ route('atribuir', ['id' => $d->id]) }}" class="btn btn-danger"
                                 style="float: right">Atribuir usuário</a>
@@ -54,7 +52,7 @@
     </script>
     <script>
         $(document).ready(function() {
-            $('#departamento').DataTable({
+            $('#departamento_user').DataTable({
                 select: false,
                 responsive: true,
                 "order": [

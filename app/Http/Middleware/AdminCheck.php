@@ -19,8 +19,8 @@ class AdminCheck
             return $next($request);
             
         }else{
-            if (!Auth::check()){
-                return redirect('/');
+            if (!Auth::check()->role == 2){
+                return redirect('/tabeladepart');
             }
             return redirect('/');
         }

@@ -76,7 +76,7 @@
             </script>
             <script>
                 $(document).ready(function() {
-                    $('#users').DataTable({
+                    $('#user_role').DataTable({
                         select: false,
                         responsive: true,
                         "order": [

@@ -87,7 +87,7 @@
                         <td>{{ $usuario->auditable_type }}</td>
                         <td>{{ App\Cadastropessoass::whereId($usuario->user_id)->pluck('nome') }}</td>
                         <!--nome usuario -->
-                        <td>{{ date('d-m-Y H:i:s', strtotime($usuario->created)) }}</td>
+                        <td class="text-primary">{{ $usuario->created_at->toFormattedDateString() }}</td>
                         <td>
                             <ul class="list-inline">
                                 <li>

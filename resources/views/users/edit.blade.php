@@ -36,19 +36,8 @@
                     {{ $message }}
                 </span>
             @enderror
-            <div>
-                <select required="required" style="background-color: #white" class="form-control" name="role"
-                    id="role">
-                    <option value="role">Role</option>
-                    @foreach ($roles as $roles)
-                        <option value="{{ $roles }}">
-                            {{ $roles }}
-                        </option>
-                    @endforeach
-                </select>
-
-            </div>
-     
+           
+           
 
         <input type="email" class="form-control" name="email" value="{{ old('email', $user->email) }}"
             class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"
@@ -58,7 +47,7 @@
                 {{ $message }}
             </span>
         @enderror
-
+        
 
         <input type="cpf" class="form-control" name="cpf" value="{{ old('cpf', $user->cpf) }}"
             class="form-control @error('email') is-invalid @enderror" name="cpf" value="{{ old('cpf') }}"
@@ -84,7 +73,34 @@
 
         <input id="confirm-password-confirm" type="password" class="form-control" name="confirm-password"
             autocomplete="confirm-password" placeholder="confirme password">
-
+            <div class="conteudo-modal-title text-center">
+            <h2>Escolha o Role</h2>
+            </div>
+            <table class="table">
+                <tbody>
+                    @foreach ($roles as $id => $role)
+                    <tr>
+                        <td>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox"
+                                        name="roles[]"
+                                        value="{{ $id }}" {{ $user->roles->contains($id) ? 'checked' : ''}}
+                                    >
+                                    <span class="form-check-sign">
+                                        <span class="check" value=""></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            {{ $role }}
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
 
 
 
@@ -94,6 +110,17 @@
         </div>
     </div>
 
+  
+<script>
 
+    $(document).ready(function(){
+
+
+  $('#cpf').mask('000.000.000-00', {reverse: true});
+
+  });
+    </script>
+    
+    
 
     @endsection

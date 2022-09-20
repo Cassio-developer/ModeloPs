@@ -87,7 +87,7 @@
                             <td>{{ $cadastropessoas->telefone }}</td>
                             <td>{{ $cadastropessoas->cpf }}</td>
                             <td>{{ $cadastropessoas->bairro }}</td>
-                            <td>{{ $cadastropessoas->datanascimento }}</td>
+                            <td class="text-primary">{{ $cadastropessoas->created_at->toFormattedDateString() }}</td>
                             <td>{{ $cadastropessoas->sexo }}</td>
                             <td>{{ $cadastropessoas->complemento }}</td>
                             <td>

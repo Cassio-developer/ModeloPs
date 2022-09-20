@@ -27,21 +27,23 @@ class HomeController extends Controller
     {
         $user=Auth::user();
 
-        if ($user->hasRole('super-admin')) {
-            $totalUsers = User::count();
+        $role=Auth::user()->role;
 
-            $usersRoles = DB::table('model_has_roles')->get();
-
-            $admin = $usersRoles->where('role_id', 1)->count();
-           
-            $recrutador = $usersRoles->where('role_id', 3)->count();
-        
-            return view('admin.home', compact('user', 'admin'));
-        } else if ($user->hasRole('admin-demandante')) {
-            return view('admin-demandante/home', compact('user'));
-        } else {
-            return view('/welcome');
+        if($role=='1')
+        {
+            return view('welcome', compact('user', 'role'));
         }
+
+        if($role=='2')
+        {
+            return view('welcome');
+        }
+
+        else{
+            return view('welcome');
+        }
+
+        return view('welcome');
     }
 
 }

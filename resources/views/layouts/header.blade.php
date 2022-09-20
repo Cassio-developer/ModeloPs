@@ -49,6 +49,7 @@
 <body data-background-color="bg4">
     <div class="wrapper">
         <div class="main-header">
+            
             <!-- Logo Header -->
             <div class="logo-header" data-background-color="white">
                 <button class="navbar-toggler sidenav-toggler" type="button" data-toggle="collapse"

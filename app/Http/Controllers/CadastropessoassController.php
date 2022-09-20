@@ -50,11 +50,12 @@ class CadastropessoassController extends Controller
       
     ]);
     $validator = Validator::make($request->all(), [
-        'nome' => ['required'],
+        'nome' => ['required', 'string', 'max:255'],
         'datanascimento' => ['required'],
-        'cpf' => ['required', 'unique:cadastropessoass', 'cpf'],
+        'cpf' => ['required','string', 'unique:cadastropessoass', 'cpf'],
         'sexo' => ['required'],
 
+        
 
     ], [
         'cpf.cpf' => 'CPF inválido',
@@ -62,6 +63,18 @@ class CadastropessoassController extends Controller
         'nome.required' => 'O campo nome é obrigatório',
         'datanascimento.required' => 'O campo data de nascimento é obrigatório',
         'sexo.required' => 'O campo sexo é obrigatório',
+        'name.required' => 'Nome é obrigatório',
+        'name.string' => 'Somente letras',
+        'name.max' => 'Máximo 255 caracteres',
+        'email.required' => 'Email é obrigatório',
+        'email.email' => 'Formato errado',
+        'email.max' => 'Máximo 255 caracteres',
+    
+        'email.unique' => 'E-mail já cadastrado',
+        'cpf.required' => 'CPF é obrigatório',
+        'cpf.max' => 'Máximo 14 numeros',
+        'cpf.cpf' => 'CPF inválido',
+
     ]);
 
     if ($validator->fails()) {

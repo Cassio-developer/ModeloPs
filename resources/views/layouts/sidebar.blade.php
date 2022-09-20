@@ -149,16 +149,24 @@
                 </a>
                 </a>
             </li>
-            <!--aqui colocamos auditoria -->
+            @else
+            @endrole  
+            
+            @if (auth()->check())    
+            @if (auth()->user()->hasRole('admin'))
+                 <!--aqui colocamos auditoria -->
             <li class="{{ request()->routeIs('users/*') ? 'active' : '' }}">
                 <a href="{{ url('register') }}">
                     <span class="sub-item">Criar usuario</span>
                 </a>
                 </a>
-            </li>
-        @else
-        @endrole
-
+            </li>    
+                @elseif (auth()->user()->hasRole('adm'))
+                
+            @endif  
+            @else
+            <h1>Displaying guest content</h1>
+        @endif
     </div>
     </li>
     <li class="nav-item">
